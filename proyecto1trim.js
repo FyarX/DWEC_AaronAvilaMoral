@@ -117,11 +117,10 @@ class Estudiante extends Persona {
         let promedioFinal = 0;
 
         for (let asignatura of this.#asignaturas){
-            const promedioAsignatura = asignatura.calculaPromedio();
-            if (promedioAsignatura !== 0) { // Solo suma si hay calificaciones
-                sumatorio += promedioAsignatura;
-                contador++;
-            }
+          if(asignatura.calificaciones>0){
+            sumatorio+= asignatura.calificaciones;
+            contador++;
+          }
         }
 
         if (contador === 0) return 0;
@@ -207,7 +206,6 @@ class Asignatura {
 
     // Función que calcula el promedio si existe 1 o mas calificaciones
     calculaPromedio(){
-
         let longArray = this.#calificaciones.length;
         if(longArray > 0){
 
@@ -216,7 +214,7 @@ class Asignatura {
             sumArray += this.#calificaciones[i];
             }
 
-            return sumArray / longArray;
+            return `El promedio de ${this.#nombre} es ${sumArray / longArray}`;
 
         } else {
             console.log("No existen calificaciones");
@@ -323,7 +321,7 @@ class ListadoEstudiantes {
             console.log(`Nombre del estudiante: ${estudiante.nombre}`);
             console.log(`Calificaciones:`);
             estudiante.asignaturas.forEach(asignatura => {
-                const nota = Number(asignatura[1]);
+                const nota = Number(asignatura.calificaciones);
                 console.log(`${asignatura.nombre}: ${nota}`);
             });
             console.log(`Promedio: ${estudiante.promedioEstudiante()}`);
@@ -446,8 +444,8 @@ console.log("\n\n");
 
 console.log("CALIFICACIÓN DE ESTUDIANTES");
 estudiante1.calificarEstudiante(sistemasDigitales, 9);
-estudiante1.calificarEstudiante(sistemasDigitales, 7);
-estudiante1.calificarEstudiante(ingComputadores, 9);
+// estudiante1.calificarEstudiante(sistemasDigitales, 7);
+// estudiante1.calificarEstudiante(ingComputadores, 9);
 estudiante2.calificarEstudiante(matematicaDiscreta, 5);
 console.log("\n\n");
 
@@ -466,21 +464,28 @@ console.log("\n\n");
 
 //? Calcular el promedio de las calificaciones de una asignatura
 
-console.log("PROMEDIO DE LAS CALIFICACIONES EN LÓGICA");
-logica.calculaPromedio(); 
+console.log("PROMEDIO DE LAS CALIFICACIONES EN SISTEMAS DIGITALES");
+sistemasDigitales.calculaPromedio(); 
 console.log("\n\n");
 
 //? Eliminación de asignaturas
 
-listaAsignaturas.eliminaAsignatura(ingComputadores); // ingComputadores ya no estará en la lista
+listaAsignaturas.eliminaAsignatura(ingComputadores);
+// ingComputadores ya no estará en la lista
+console.log("\n\n");
+
 
 //? Eliminar estudiantes de la lista
 
-listaEstudiantes.eliminaEstudiante(estudiante4); // estudiante4 ya no estará mas en la lista
+//listaEstudiantes.eliminaEstudiante(estudiante4); // estudiante4 ya no estará mas en la lista
+console.log("\n\n");
+
 
 //? Calcular el promedio general de todos los estudiantes
 
-listaEstudiantes.promedioEstudiantes(); 
+listaEstudiantes.promedioEstudiantes();
+console.log("\n\n");
+
 
 //? Generar reporte de las calificaciones
 
