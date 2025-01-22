@@ -699,6 +699,7 @@ function mostrarMenu(){
 
             const eleccionAsignatura = prompt("Selecciona el número de la opción deseada:")
             switch(eleccionAsignatura){
+                //? AGREGAR ASIGNATURA
                 case "1":
                     console.clear();
                     try{
@@ -716,7 +717,8 @@ function mostrarMenu(){
                     }
 
                     break;
-
+                
+                //? ELIMINAR ASIGNATURA
                 case "2":
                     console.clear();
 
@@ -729,7 +731,8 @@ function mostrarMenu(){
                     listaAsignaturas.eliminaAsignatura(asignaturaAEliminar);
 
                     break;
-
+                
+                //? CALCULAR PROMEDIO DE LAS CALIFICACIONES DE UNA ASIGNATURA
                 case "3":
                     console.clear();
 
@@ -742,7 +745,8 @@ function mostrarMenu(){
                     console.log(asignaturaPromedio.calculaPromedio());
 
                     break;
-
+                
+                //? BUSCAR ASIGNATURA
                 case "4":
                     console.clear();
 
@@ -755,7 +759,8 @@ function mostrarMenu(){
                     console.log(asignaturaABuscar.toString());
 
                     break;
-
+                
+                //? CALIFICAR ASIGNATURA
                 case "5":
                     console.clear();
 
@@ -772,11 +777,12 @@ function mostrarMenu(){
 
                     break;
 
+                //? SALIR
                 case "6":
                     console.clear();
                     console.log("Saliendo del programa...");
                     break;
-
+                
                 default:
                     console.clear();
                     console.log("Selecciona un número entre 1 y 5 para elegir una opción");
@@ -797,6 +803,8 @@ function mostrarMenu(){
 
             //? Opciones sobre la lista de estudiantes
             switch(eleccionListaEstudiantes){
+
+                //? CALCULAR PROMEDIO GENERAL DE LOS ESTUDIANTES
                 case "1":
                     console.clear();
                     
@@ -805,8 +813,10 @@ function mostrarMenu(){
 
                     break;
                 
+                //? ELIMINAR ESTUDIANTES DE LA LISTA
                 case "2":
                     console.clear();
+
                     try{
                     console.log("Introduce el nombre del estudiante que deseas eliminar de la lista");
                     // Obtención del nombre del estudiante a eliminar
@@ -822,8 +832,10 @@ function mostrarMenu(){
                     
                     break;
                 
+                //? BUSCAR A UN ESTUDIANTE
                 case "3":
                     console.clear();
+
                     console.log("Introduce el nombre del estudiante que deseas buscar");
                     // Obtención del nombre del estudiante a buscar
                     const nombreEstudianteBuscar = prompt("Nombre del estudiante:");
@@ -834,6 +846,7 @@ function mostrarMenu(){
 
                     break;
                 
+                //? SALIR
                 case "4":
                     console.clear();
                     console.log("Saliendo del programa...");
