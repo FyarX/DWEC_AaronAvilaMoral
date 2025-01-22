@@ -462,12 +462,13 @@ console.log("\n\n");
 
 // ****************** Programa principal *****************************
 function mostrarMenu(){
-    console.clear();
-    console.log("Bienvenido a Gestion de Estudiantes y Asignaturas, selecciona con que deseas interactuar:")
+
+    console.log("Bienvenido a Gestion de Estudiantes y Asignaturas, selecciona con que deseas interactuar:");
     console.log("1. Estudiante concreto");
     console.log("2. Asignaturas");
     console.log("3. Listado de estudiantes");
     console.log("4. Deseo salir");
+
     const eleccionMenu = prompt("Selecciona el número de la opción que deseas interactuar");
     
     switch(eleccionMenu){
@@ -682,7 +683,10 @@ function mostrarMenu(){
                     mostrarMenu();
 
             }
-        
+            
+            break;
+
+
         case "2":
             console.clear();
             console.log("Opciones a realizar con una asignatura:");
@@ -778,7 +782,8 @@ function mostrarMenu(){
                     console.log("Selecciona un número entre 1 y 5 para elegir una opción");
                     mostrarMenu();
             }
-     
+            
+            break;
     
         case "3":
             console.clear();
@@ -839,6 +844,8 @@ function mostrarMenu(){
                     console.log("Selecciona un número entre 1 y 4 para elegir una opción");
                     mostrarMenu();
             }
+
+            break;
         
         case "4":
             console.clear();
