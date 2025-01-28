@@ -586,10 +586,16 @@ function mostrarMenu(){
                     // Obtención del nombre del estudiante a eliminar
                     console.log("Introduce el nombre del estudiante que quieras eliminar");
                     let estudianteEliminar = prompt("Nombre del estudiante a eliminar:");
-                    // Asignación de un objeto estudiante a la variable
-                    estudianteEliminar = listaEstudiantes.busquedaEstudiante(estudianteEliminar);
-                    // Eliminación del estudiante
-                    listaEstudiantes.eliminaEstudiante(estudianteEliminar);
+
+                    try{
+                        // Búsqueda del estudiante
+                        estudianteEliminar = listaEstudiantes.busquedaEstudiante(estudianteEliminar);
+                        // Eliminación del estudiante
+                        listaEstudiantes.eliminaEstudiante(estudianteEliminar);
+                    } catch (error){
+                        console.log("Ha habido un error al eliminar al estudiante");
+                        console.log(error);
+                    }
                     
                     break;
 
@@ -668,19 +674,19 @@ function mostrarMenu(){
                     console.clear();
 
                     try{
-                    console.log("Introduce el nombre del estudiante al que deseas calificar:");
-                    // Obtención del estudiante al que se quiere calificar
-                    let estudianteCalificar = prompt("Nombre del estudiante:");
-                    estudianteCalificar = listaEstudiantes.busquedaEstudiante(estudianteCalificar);
-                    console.log("Introduce el nombre de la asignatura en la que deseas calificar al estudiante:");
-                    // Obtención de la asignatura en la que se quiere calificar al estudiante
-                    let asignaturaCalificar = prompt("Nombre de la asignatura:");
-                    asignaturaCalificar = listaAsignaturas.busquedaAsignatura(asignaturaCalificar);
-                    console.log("Introduce la calificación que deseas asignar al estudiante:");
-                    // Obtención de la calificación a asignar
-                    let calificacion = prompt("Calificación:");
-                    // Calificación del estudiante
-                    estudianteCalificar.calificar(asignaturaCalificar, calificacion);
+                        console.log("Introduce el nombre del estudiante al que deseas calificar:");
+                        // Obtención del estudiante al que se quiere calificar
+                        let estudianteCalificar = prompt("Nombre del estudiante:");
+                        estudianteCalificar = listaEstudiantes.busquedaEstudiante(estudianteCalificar);
+                        console.log("Introduce el nombre de la asignatura en la que deseas calificar al estudiante:");
+                        // Obtención de la asignatura en la que se quiere calificar al estudiante
+                        let asignaturaCalificar = prompt("Nombre de la asignatura:");
+                        asignaturaCalificar = listaAsignaturas.busquedaAsignatura(asignaturaCalificar);
+                        console.log("Introduce la calificación que deseas asignar al estudiante:");
+                        // Obtención de la calificación a asignar
+                        let calificacion = prompt("Calificación:");
+                        // Calificación del estudiante
+                        estudianteCalificar.calificar(asignaturaCalificar, calificacion);
                     } catch (error){
                         console.log("Ha habido un error al calificar al estudiante");
                         console.log(error);
@@ -740,14 +746,14 @@ function mostrarMenu(){
                 case "1":
                     console.clear();
                     try{
-                    console.log("Introduce el nombre de la asignatura que deseas agregar");
-                    // Obtención del nombre de la asignatura a agregar
-                    const nombreAsignatura = prompt("Nombre de la asignatura:");
-                    // Creación de la asignatura
-                    const nuevaAsignatura = new Asignatura(nombreAsignatura);
-                    // Agregado de la asignatura a la lista de asignaturas
-                    listaAsignaturas.agregaAsignatura(nuevaAsignatura);
-                    console.log("Asignatura agregada con éxito");
+                        console.log("Introduce el nombre de la asignatura que deseas agregar");
+                        // Obtención del nombre de la asignatura a agregar
+                        const nombreAsignatura = prompt("Nombre de la asignatura:");
+                        // Creación de la asignatura
+                        const nuevaAsignatura = new Asignatura(nombreAsignatura);
+                        // Agregado de la asignatura a la lista de asignaturas
+                        listaAsignaturas.agregaAsignatura(nuevaAsignatura);
+                        console.log("Asignatura agregada con éxito");
                     } catch (error){
                         console.log("Ha habido un error al agregar la asignatura");
                         console.log(error);
@@ -762,11 +768,18 @@ function mostrarMenu(){
                     console.log("Introduce el nombre de la asignatura que deseas eliminar");
                     // Obtención del nombre de la asignatura a eliminar
                     const nombreAsignaturaEliminar = prompt("Nombre de la asignatura:");
-                    // Búsqueda de la asignatura a eliminar
-                    const asignaturaAEliminar = listaAsignaturas.busquedaAsignatura(nombreAsignaturaEliminar);
-                    // Eliminación de la asignatura
-                    listaAsignaturas.eliminaAsignatura(asignaturaAEliminar);
+                    
+                    try{
+                        // Búsqueda de la asignatura a eliminar
+                        const asignaturaAEliminar = listaAsignaturas.busquedaAsignatura(nombreAsignaturaEliminar);
+                        // Eliminación de la asignatura
+                        listaAsignaturas.eliminaAsignatura(asignaturaAEliminar);
 
+                    } catch (error){
+                        console.log("Ha habido un error al eliminar la asignatura");
+                        console.log(error);
+                    }
+                    
                     break;
                 
                 //? CALCULAR PROMEDIO DE LAS CALIFICACIONES DE UNA ASIGNATURA
@@ -804,14 +817,22 @@ function mostrarMenu(){
                     // Obtenemos el nombre de la asignatura a calificar
                     console.log("Introduce el nombre de la asignatura que deseas calificar");
                     const nombreAsignaturaCalificar = prompt("Nombre de la asignatura:");
-                    // Búsqueda de la asignatura
-                    const asignaturaCalificar = listaAsignaturas.busquedaAsignatura(nombreAsignaturaCalificar);
-                    // Obtenemos la calificación a asignar
-                    console.log("Introduce la calificación que deseas asignar a la asignatura");
-                    const calificacionAsignatura = prompt("Calificación:");
-                    // Calificación de la asignatura
-                    asignaturaCalificar.calificar(calificacionAsignatura);
+                    
+                    try{
 
+                        // Búsqueda de la asignatura
+                        const asignaturaCalificar = listaAsignaturas.busquedaAsignatura(nombreAsignaturaCalificar);
+                        // Obtenemos la calificación a asignar
+                        console.log("Introduce la calificación que deseas asignar a la asignatura");
+                        const calificacionAsignatura = prompt("Calificación:");
+                        // Calificación de la asignatura
+                        asignaturaCalificar.calificar(calificacionAsignatura);  
+
+                    } catch (error){
+                        console.log("Ha habido un error al calificar la asignatura");
+                        console.log(error);
+                    }
+                      
                     break;
 
                 //? SALIR
@@ -854,14 +875,16 @@ function mostrarMenu(){
                 case "2":
                     console.clear();
 
-                    try{
                     console.log("Introduce el nombre del estudiante que deseas eliminar de la lista");
                     // Obtención del nombre del estudiante a eliminar
                     const nombreEstudiante = prompt("Nombre del estudiante:");
-                    // Búsqueda del estudiante
-                    const estudianteAEliminar = listaEstudiantes.busquedaEstudiante(nombreEstudiante);
-                    // Eliminación del estudiante
-                    listaEstudiantes.eliminaEstudiante(estudianteAEliminar);
+
+                    try{
+
+                        // Búsqueda del estudiante
+                        const estudianteAEliminar = listaEstudiantes.busquedaEstudiante(nombreEstudiante);
+                        // Eliminación del estudiante
+                        listaEstudiantes.eliminaEstudiante(estudianteAEliminar);
                     } catch (error){
                         console.log("Ha habido un error al eliminar al estudiante");
                         console.log(error);
@@ -870,7 +893,7 @@ function mostrarMenu(){
                     break;
                 
                 //? BUSCAR A UN ESTUDIANTE
-                case "3":
+                case "3":                  
                     console.clear();
 
                     console.log("Introduce el nombre del estudiante que deseas buscar");

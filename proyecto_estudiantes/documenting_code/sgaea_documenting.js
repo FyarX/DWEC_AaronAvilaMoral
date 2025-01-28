@@ -4,186 +4,204 @@
 // Para ver repositorio completo:
 // https://github.com/FyarX/DWEC_AaronAvilaMoral
 
+
+
+
+/**
+ * Representa una persona genérica.
+ * @class
+ */
 class Persona {
     #nombre;
     #edad;
     #direccion;
 
-    constructor (nombre, edad, direccion){
-
-        // Filtrado de la asignación del nombre
-        if(!nombre.match(/[A-Za-zÁÉÍÓÚáéíóú ]+/)){
-            throw new Error("El nombre debe de contener sólo letras y espacios");
+    /**
+     * Crea una nueva instancia de Persona.
+     * @constructor
+     * @param {string} nombre - Nombre de la persona.
+     * @param {number} edad - Edad de la persona.
+     * @param {Direccion} direccion - Dirección de la persona.
+     * @throws {Error} Si el nombre contiene caracteres no válidos.
+     */
+    constructor(nombre, edad, direccion) {
+        if (!nombre.match(/[A-Za-zÁÉÍÓÚáéíóú ]+/)) {
+            throw new Error("El nombre debe contener solo letras y espacios");
         } else {
-            // Asignación del nombre
             this.#nombre = nombre;
         }
-
         this.#edad = edad;
-
         this.#direccion = direccion;
     }
 
-
-    //<<<<<<<<<<<<<<<< Getters de la clase <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-    get nombre(){
+    /**
+     * Obtiene el nombre de la persona.
+     * @returns {string} El nombre de la persona.
+     */
+    get nombre() {
         return this.#nombre;
     }
 
-    get edad(){
+    /**
+     * Obtiene la edad de la persona.
+     * @returns {number} La edad de la persona.
+     */
+    get edad() {
         return this.#edad;
     }
 
-    get direccion(){
+    /**
+     * Obtiene la dirección de la persona.
+     * @returns {Direccion} La dirección de la persona.
+     */
+    get direccion() {
         return this.#direccion;
     }
+}   
 
 
-}
-
-
+/**
+ * Representa un estudiante que hereda de Persona.
+ * @extends Persona
+ * @class
+ */
 class Estudiante extends Persona {
-
     #id;
     #asignaturas;
     #relacion;
 
     static contadorId = 1;
-    constructor(nombre, edad, direccion){
 
-        // Llamada al constructor de la clase padre
+    /**
+     * Crea una nueva instancia de Estudiante.
+     * @constructor
+     * @param {string} nombre - Nombre del estudiante.
+     * @param {number} edad - Edad del estudiante.
+     * @param {Direccion} direccion - Dirección del estudiante.
+     */
+    constructor(nombre, edad, direccion) {
         super(nombre, edad, direccion);
-
-        // Asignación de una variable autoincrementable
         this.#id = Estudiante.contadorId++;
-
-        // Definición del resto de propiedades
         this.#asignaturas = [];
         this.#relacion = [];
     }
 
-
-    // Matricular y desmatricular estudiantes
-    matricularEstudiante(...asignaturas){
-
-        for(let asignatura of asignaturas){
-            // Comprueba si el estudiante ya está matriculado en la asignatura
-            this.#asignaturas.push(asignatura); 
-            // Añade la acción de matriculación al historial
+    /**
+     * Matricula al estudiante en una o más asignaturas.
+     * @param {...Asignatura} asignaturas - Las asignaturas en las que se matricula al estudiante.
+     */
+    matricularEstudiante(...asignaturas) {
+        for (let asignatura of asignaturas) {
+            this.#asignaturas.push(asignatura);
             this.#relacion.push([`Matriculación de ${asignatura.nombre}`, new Date()]);
         }
-
     }
 
-    desmatricularEstudiante(...asignaturas){
-
-        for(let asignatura of asignaturas){
-            if(this.#asignaturas.includes(asignatura.nombre)){
-                // Filtra todas las asignaturas menos la que queremos eliminar
-                this.#asignaturas = this.#asignaturas.filter(asignatura=>asignatura.nombre != asignatura.nombre); // Filtra todas las asignaturas menos la que queremos eliminar
-                // Añade la acción de desmatriculación al historial
-                this.#relacion.push([`Desmatriculación de ${asignatura.nombre}`, new Date()]);    
-            }
+    /**
+     * Desmatricula al estudiante de una o más asignaturas.
+     * @param {...Asignatura} asignaturas - Las asignaturas de las que se desmatricula al estudiante.
+     */
+    desmatricularEstudiante(...asignaturas) {
+        for (let asignatura of asignaturas) {
+            this.#asignaturas = this.#asignaturas.filter(a => a.nombre !== asignatura.nombre);
+            this.#relacion.push([`Desmatriculación de ${asignatura.nombre}`, new Date()]);
         }
-
     }
 
-    // Califica al estudiante en una asignatura
+    /**
+     * Califica al estudiante en una asignatura.
+     * @param {Asignatura} asignatura - La asignatura que se calificará.
+     * @param {number} nota - La nota que se asignará.
+     * @throws {Error} Si no hay nota o no es válida, o si el estudiante no está matriculado.
+     */
     calificar(asignatura, nota) {
-
-
-        // Comprueba si la nota está vacía, aplicando la sobrecarga de métodos. 
-        // Si se llama calificar(asignatura) genera un resultado diferente a calificar(asignatura, nota)
         if (arguments.length === 1) {
             throw new Error("Faltan datos para calificar al estudiante");
         }
-
-        // Encuentra la asignatura en la que se quiere calificar al estudiante
-        const asignaturaMatriculada = this.#asignaturas.find(a => a.nombre === asignatura.nombre); // Encuentra si la asignatura existe en las matriculadas por el alumno
-
-        // Comprueba si el estudiante está matriculado en la asignatura
+        const asignaturaMatriculada = this.#asignaturas.find(a => a.nombre === asignatura.nombre);
         if (!asignaturaMatriculada) {
             throw new Error("El estudiante no está matriculado en esta asignatura");
         }
-        
-        // Comprueba que la nota esté entre 0 y 10
         if (nota < 0 || nota > 10) {
             throw new Error("La calificación debe estar entre 0 y 10.");
         }
-
-        // Agrega la calificación a la asignatura
-        asignaturaMatriculada.agregarCalificacion(nota);
-        console.log(`Calificación ${nota} agregada con éxito a ${asignaturaMatriculada.nombre}`);
+        asignaturaMatriculada.calificar(nota);
     }
 
-    // Obtener un listado de todos los procesos de Matriculación / Desmatriculación realizados
-    get relacion(){
-
-        // Crea un patrón de mapeo para mostrar la información correctamente
+    /**
+     * Devuelve el historial de acciones del estudiante.
+     * @returns {string[]} El historial de matriculaciones y desmatriculaciones.
+     */
+    get relacion() {
         return this.#relacion.map(([accion, fecha]) => {
-
-            // Formatea la fecha en un formato más legible
-            const fechaFormateada = fecha.toLocaleDateString('es-ES', {  // Fecha en formato español
+            const fechaFormateada = fecha.toLocaleDateString('es-ES', {
                 weekday: 'long',
                 day: '2-digit',
                 month: 'long',
                 year: 'numeric'
             });
-
-            // Devuelve la acción realizada y la fecha en la que se realizó
             return `${accion} - ${fechaFormateada}`;
         });
     }
 
-    // Devuelve la media de las calificaciones del estudiante si existe 1 o mas
-    promedioEstudiante(){
-
+    /**
+     * Calcula el promedio de calificaciones del estudiante.
+     * @returns {string} El promedio calculado.
+     */
+    promedioEstudiante() {
         let sumatorio = 0;
         let contador = 0;
-        let promedioFinal = 0;
-
-        // Calcula el promedio de cada asignatura y lo suma al sumatorio
-        for (let asignatura of this.#asignaturas){
+        for (let asignatura of this.#asignaturas) {
             const promedioAsignatura = asignatura.calculaPromedio();
-            if (promedioAsignatura !== 0) { // Solo suma si hay calificaciones
+            if (promedioAsignatura !== 0) {
                 sumatorio += promedioAsignatura;
                 contador++;
             }
         }
-
-        // Si no hay calificaciones, devuelve 0
-        if (contador === 0) return 0;
-
-        // Calcula el promedio final
-        promedioFinal = Number(sumatorio/contador).toFixed(2); 
-      return `El promedio del estudiante es ${promedioFinal}`
+        return contador === 0 ? 0 : `El promedio del estudiante es ${(sumatorio / contador).toFixed(2)}`;
     }
 
-
-    // <<<<<<<<<<<<<<<<<<<<<<<< Getters de la clase <<<<<<<<<<<<<<<<<<<<<<<
-    get asignaturas(){
+    /**
+     * Obtiene las asignaturas del estudiante.
+     * @returns {Asignatura[]} Las asignaturas del estudiante.
+     */
+    get asignaturas() {
         return this.#asignaturas;
     }
 
-    // Metodo predefinido toString, devuelve los datos del estudiante
+    /**
+     * Representa al estudiante como una cadena.
+     * @returns {string} Una cadena con los datos del estudiante.
+     */
     toString() {
-        return `Estudiante: ${this.nombre}, ID: ${this.#id}, Dirección: ${this.direccion.toString()}`;
+        return `Estudiante: ${this.nombre}, ID: ${this.#id}, Dirección: ${this.direccion}`;
     }
 }
 
-class Direccion{
-
+/**
+ * Representa una dirección.
+ * @class
+ */
+class Direccion {
     #calle;
     #numero;
     #piso;
     #cp;
-    #provincia;
     #localidad;
+    #provincia;
 
-    // Crea un objeto dirección con los datos pasados como parámetros
-    constructor(calle, numero, piso, cp, provincia, localidad){
+    /**
+     * @param {string} calle - Nombre de la calle.
+     * @param {string} provincia - Nombre de la provincia.
+     * @param {number} numero - Número de la vivienda.
+     * @param {string} piso - Número de piso.
+     * @param {number} cp - Código postal.
+     * @param {string} localidad - Nombre de la localidad.
+     * 
+     */
 
-        // Definición de propiedades
+
+    constructor(calle, numero, piso, cp, localidad, provincia) {
         this.#calle = calle;
         this.#numero = numero;
         this.#piso = piso;
@@ -192,60 +210,97 @@ class Direccion{
         this.#localidad = localidad;
     }
 
-    //<<<<<<<<<<<<<<< Getters de la clase <<<<<<<<<<<<<<<<<<<<<<<<
+    /**
+     * Obtiene la calle.
+     * @returns {string} La calle.
+     */
     get calle(){
         return this.#calle;
     }
 
-    get numero(){
+
+    /**
+     * Obtiene el número.
+     * @returns {number} 
+     */
+    get numero() {
         return this.#numero;
     }
 
-    get piso(){
+    /**
+     * Obtiene el piso.
+     * @returns {string} 
+     */
+    get piso() {
         return this.#piso;
     }
 
-    get cp(){
+    /**
+     * Obtiene el código postal.
+     * @returns {string}
+     */
+    get cp() {
         return this.#cp;
     }
 
+    /**
+     * Obtiene la provincia.
+     * @returns {string}
+     */
     get provincia(){
         return this.#provincia;
     }
-
+    
+    /**
+     * Obtiene la localidad.
+     * @returns {string}
+     */
     get localidad(){
         return this.#localidad;
     }
 
-    // Devuelve la dirección completa
-    toString(){
+    /**
+     * Representa la dirección como una cadena.
+     * @returns {string} Una cadena con la dirección completa.
+     */
+    toString() {
         return `Calle: ${this.#calle}, Número: ${this.#numero}, Piso: ${this.#piso}, Código Postal: ${this.#cp}, Localidad: ${this.#localidad}(${this.#provincia})`;
     }
 }
 
+/**
+ * Representa una asignatura.
+ * @class
+ */
 class Asignatura {
 
     #nombre;
     #calificaciones;
 
-    constructor(nombre){
-
+    /**
+     * Crea una nueva instancia de Asignatura.
+     * @constructor
+     * @param {string} nombre - El nombre de la asignatura. Solo se permiten letras y espacios.
+     */
+    constructor(nombre) {
         // Filtrado de nombres
         this.#nombre = (nombre.match(/^[A-Za-zÁÉÍÓÚáéíóú ]+$/)) ? nombre : "Sin nombre"; // Solo acepta letras y espacios
 
         this.#calificaciones = [];
     }
 
-    // Función que calcula el promedio si existe 1 o mas calificaciones
-    calculaPromedio(){
-
+    /**
+     * Calcula el promedio de las calificaciones si existen.
+     * @returns {number} El promedio de las calificaciones o 0 si no hay calificaciones.
+     */
+    calculaPromedio() {
         // Comprueba si hay calificaciones
         let longArray = this.#calificaciones.length;
-        if(longArray > 0){
+        if (longArray > 0) {
 
             let sumArray = 0;
             for (let i = 0; i < longArray; i++) {
-            sumArray += this.#calificaciones[i];
+                sumArray += this.#calificaciones[i];
             }
 
             // Devuelve la media de las calificaciones
@@ -254,96 +309,134 @@ class Asignatura {
         } else {
             console.log("No existen calificaciones");
             return 0;
-
         }
     }
 
-    // Agregar y eliminar calificaciones
-    calificar(nota){
-        if(0<=nota<=10){
-        // Agrega la calificación al array
-        this.#calificaciones.push(nota);
-        }else {
+    /**
+     * Agrega una calificación a la asignatura.
+     * @param {number} nota - La calificación a agregar (debe estar entre 0 y 10).
+     * @throws {Error} Si la calificación no está en el rango permitido.
+     */
+    calificar(nota) {
+        if (0 <= nota && nota <= 10) {
+            // Agrega la calificación al array
+            this.#calificaciones.push(nota);
+        } else {
             throw new Error("La calificación debe estar entre 0 y 10.");
         }
     }
 
-    eliminarCalificacion(nota){
-        if(this.#calificaciones.includes(nota)){
-            this.#calificaciones.splice(this.#calificaciones.indexOf(nota)); // Separa del array las entradas con la calificación que se indique
+    /**
+     * Elimina una calificación de la asignatura.
+     * @param {number} nota - La calificación a eliminar.
+     * @throws {Error} Si la calificación no existe en la lista.
+     */
+    eliminarCalificacion(nota) {
+        if (this.#calificaciones.includes(nota)) {
+            // Separa del array las entradas con la calificación que se indique
+            this.#calificaciones.splice(this.#calificaciones.indexOf(nota), 1);
         } else {
             throw new Error("La nota no puede ser eliminada ya que no existe");
         }
     }
 
     // <<<<<<<<<<<<<<<<< Getters de la clase <<<<<<<<<<<<<<<<<<<<<
-    get nombre(){
+
+    /**
+     * Obtiene el nombre de la asignatura.
+     * @type {string}
+     * @readonly
+     */
+    get nombre() {
         return this.#nombre;
     }
-    
-    get calificaciones(){
+
+    /**
+     * Obtiene las calificaciones de la asignatura.
+     * @type {number[]}
+     * @readonly
+     */
+    get calificaciones() {
         return this.#calificaciones;
     }
 
-    // Funcion predefinida toString
+    /**
+     * Convierte la información de la asignatura en una cadena de texto.
+     * @returns {string} Una representación en texto de la asignatura.
+     */
     toString() {
         return `Asignatura: ${this.nombre}`;
     }
 }
 
+/**
+ * Representa un listado de estudiantes.
+ * @class
+ */
 class ListadoEstudiantes {
 
     #listaEstudiantes;
 
-
-    constructor(...estudiantes){
-
+    /**
+     * Crea una nueva instancia de ListadoEstudiantes.
+     * @constructor
+     * @param {...Estudiante} estudiantes - Los estudiantes a agregar inicialmente.
+     */
+    constructor(...estudiantes) {
         this.#listaEstudiantes = [];
 
-        // Agrega cada estudiante que se pase como parametro al array creado previamente
-        for (let estudiante of estudiantes){
+        // Agrega cada estudiante que se pase como parámetro al array creado previamente
+        for (let estudiante of estudiantes) {
             this.agregaEstudiante(estudiante);
         }
-
     }
-    
-    // Agregar y eliminar estudiantes
-    agregaEstudiante(estudiante){
+
+    /**
+     * Agrega un estudiante al listado.
+     * @param {Estudiante} estudiante - El estudiante a agregar.
+     * @throws {Error} Si el estudiante ya está en la lista.
+     */
+    agregaEstudiante(estudiante) {
         // Comprueba si el estudiante ya está en la lista
-        if(this.#listaEstudiantes.includes(estudiante)){
+        if (this.#listaEstudiantes.includes(estudiante)) {
             throw new Error("El estudiante ya se encuentra en la lista, no puede haber duplicados");
         } else {
             this.#listaEstudiantes.push(estudiante);
         }
     }
 
-    eliminaEstudiante(estudiante){
-        if(this.#listaEstudiantes.includes(estudiante)){
-            
+    /**
+     * Elimina un estudiante del listado.
+     * @param {Estudiante} estudiante - El estudiante a eliminar.
+     * @throws {Error} Si el estudiante no se encuentra en la lista.
+     */
+    eliminaEstudiante(estudiante) {
+        if (this.#listaEstudiantes.includes(estudiante)) {
             // Filtra a todos los estudiantes menos el que queremos eliminar
-            this.#listaEstudiantes = this.#listaEstudiantes.filter(e => e !== estudiante); 
+            this.#listaEstudiantes = this.#listaEstudiantes.filter(e => e !== estudiante);
             console.log("Estudiante eliminado con éxito");
-
         } else {
             throw new Error("El estudiante no se encuentra en el listado");
         }
     }
 
-    // Obtener el promedio general de todos los estudiantes
-    promedioEstudiantes(){
-        
+    /**
+     * Calcula el promedio general de todos los estudiantes.
+     * @returns {number|string} El promedio general o un mensaje si no hay estudiantes.
+     */
+    promedioEstudiantes() {
         // Comprueba si hay estudiantes en la lista
-        if(this.#listaEstudiantes.length !== 0) return "No existe ningún estudiante en la lista";
+        if (this.#listaEstudiantes.length === 0) return "No existe ningún estudiante en la lista";
+
         let sum = 0;
         let contador = 0;
 
         for (let estudiante of this.#listaEstudiantes) {
             // Se obtiene la media de cada estudiante por separado
-            let promEstudiante = estudiante.promedioEstudiante(); 
+            let promEstudiante = estudiante.promedioEstudiante();
 
             // Si la media es un número, se suma al sumatorio y se incrementa el contador
             if (typeof promEstudiante === "number") {
-
                 sum += promEstudiante;
                 contador++;
             }
@@ -352,11 +445,11 @@ class ListadoEstudiantes {
         let promedioTotal = (sum / contador).toFixed(2);
         return Number(promedioTotal);
     }
-        
-        
 
-    // Devuelve nombre, calificaciones por asignatura y promedio de cada estudiante
-    reporte(){
+    /**
+     * Muestra un reporte con el nombre, calificaciones y promedio de cada estudiante.
+     */
+    reporte() {
         // Recorre la lista de estudiantes y muestra su nombre, calificaciones y promedio
         this.#listaEstudiantes.forEach(estudiante => {
             console.log();
@@ -372,73 +465,98 @@ class ListadoEstudiantes {
         });
     }
 
-    // Devuelve los estudiantes que coincidan con un patrón parcial
-    busquedaEstudiante(patron){
+    /**
+     * Busca estudiantes que coincidan parcialmente con un patrón.
+     * @param {string} patron - El patrón a buscar.
+     * @returns {Estudiante[]} Los estudiantes que coinciden con el patrón.
+     * @throws {Error} Si el patrón no es una cadena de texto.
+     */
+    busquedaEstudiante(patron) {
         // Comprueba si el patrón es una cadena de texto
-        if (typeof patron !== "string"){
+        if (typeof patron !== "string") {
             throw new Error("El patrón debe ser una cadena de texto");
         }
-        
+
         // Crea un patrón de búsqueda
-        let patronEstudiante = new RegExp(patron, "i" );
-        // Devuelve todos los estudiantes que coinciden con el patron
-        return this.#listaEstudiantes.filter(estudiante => patronEstudiante.test(estudiante.nombre)); 
+        let patronEstudiante = new RegExp(patron, "i");
+        // Devuelve todos los estudiantes que coinciden con el patrón
+        return this.#listaEstudiantes.filter(estudiante => patronEstudiante.test(estudiante.nombre));
     }
 
-
-    getListadoEstudiantes(){
+    /**
+     * Obtiene una copia de la lista de estudiantes.
+     * @returns {Estudiante[]} Una copia del listado de estudiantes.
+     */
+    getListadoEstudiantes() {
         // Devuelve una copia de la lista de estudiantes
         return [...this.#listaEstudiantes];
     }
 }
 
-class ListadoAsignaturas{
+/**
+ * Representa un listado de asignaturas.
+ * @class
+ */
+class ListadoAsignaturas {
 
     #listaAsignaturas;
 
-    constructor(...asignaturas){
-
+    /**
+     * Crea una nueva instancia de ListadoAsignaturas.
+     * @constructor
+     * @param {...Asignatura} asignaturas - Las asignaturas a agregar inicialmente.
+     */
+    constructor(...asignaturas) {
         this.#listaAsignaturas = [];
-        for (let asignatura of asignaturas){
+        for (let asignatura of asignaturas) {
             // Agrega las asignaturas que se pasan como parámetro
             this.añadeAsignatura(asignatura);
         }
-
     }
 
-    // Funciones para agregar y eliminar asignaturas
-    agregaAsignatura(asignatura){
+    /**
+     * Agrega una asignatura al listado.
+     * @param {Asignatura} asignatura - La asignatura a agregar.
+     */
+    agregaAsignatura(asignatura) {
         this.#listaAsignaturas.push(asignatura);
     }
 
-    eliminaAsignatura(asignatura){
+    /**
+     * Elimina una asignatura del listado.
+     * @param {Asignatura} asignatura - La asignatura a eliminar.
+     * @throws {Error} Si la asignatura no se encuentra en el listado.
+     */
+    eliminaAsignatura(asignatura) {
         // Comprueba si la asignatura está en la lista
-        if(this.#listaAsignaturas.includes(asignatura)){
-
+        if (this.#listaAsignaturas.includes(asignatura)) {
             // Filtra todas las asignaturas menos la que queremos eliminar
-            this.#listaAsignaturas.filter(a => a !== asignatura); 
+            this.#listaAsignaturas.filter(a => a !== asignatura);
             console.log("Asignatura eliminada con éxito");
-
         } else {
-
             throw new Error("La asignatura no se encuentra en el listado");
-
         }
     }
 
-    // Búsqueda de asignaturas coincidentes parcialmente con un patrón
-    busquedaAsignatura(patron){
+    /**
+     * Busca asignaturas que coincidan parcialmente con un patrón.
+     * @param {string} patron - El patrón a buscar.
+     * @returns {Asignatura[]} Las asignaturas que coinciden con el patrón.
+     * @throws {Error} Si el patrón no es una cadena de texto.
+     */
+    busquedaAsignatura(patron) {
         // Comprueba si el patrón es una cadena de texto
         if (typeof patron !== "string") throw new Error("El patrón debe ser una cadena de texto");
-        let patronAsignatura = new RegExp(patron, "i" );
-        // Filtra las asignaturas que cumplen el patron
-        return this.#listaAsignaturas.filter(asignatura => patronAsignatura.test(asignatura.nombre)); 
-
+        let patronAsignatura = new RegExp(patron, "i");
+        // Filtra las asignaturas que cumplen el patrón
+        return this.#listaAsignaturas.filter(asignatura => patronAsignatura.test(asignatura.nombre));
     }
 
-    
-
-    get listaAsignaturas(){
+    /**
+     * Obtiene la lista completa de asignaturas.
+     * @returns {Asignatura[]} El listado de asignaturas.
+     */
+    get listaAsignaturas() {
         return this.#listaAsignaturas;
     }
 }
@@ -446,69 +564,150 @@ class ListadoAsignaturas{
 
 // ************* CONJUNTO DE PRUEBAS DE CORRECTO FUNCIONAMIENTO ******************
 
-function prueba(){
+/**
+ * Prueba de interacción con estudiantes y asignaturas.
+ * 
+ * Esta función realiza las siguientes operaciones:
+ * - Crea listas de estudiantes y asignaturas.
+ * - Añade estudiantes y asignaturas a sus respectivas listas.
+ * - Matricula y desmatricula estudiantes en asignaturas.
+ * - Califica a los estudiantes en distintas asignaturas.
+ * - Elimina estudiantes y asignaturas.
+ * 
+ * @description Función principal para validar las operaciones con estudiantes y asignaturas.
+ */
+function prueba() {
 
     console.log("-------------Pruebas de interacción con estudiantes y asignaturas-----------------");
 
     //? Creación de listas de estudiantes y de asignaturas
 
+    /**
+     * Lista de estudiantes creada.
+     * @type {ListadoEstudiantes}
+     */
     let listaEstudiantes = new ListadoEstudiantes();
+
+    /**
+     * Lista de asignaturas creada.
+     * @type {ListadoAsignaturas}
+     */
     let listaAsignaturas = new ListadoAsignaturas();
+
     console.log("Listas de estudiantes y asignaturas creadas con éxito");
 
     //? Creación de estudiantes/asignaturas y eliminación de ambos con las funciones eliminaEstdiante y eliminaAsignatura
 
+    /**
+     * @type {Estudiante}
+     * @description Estudiante: David Rodríguez.
+     */
     let estudiante1 = new Estudiante("David Rodríguez", 25, new Direccion("Dr. Vaca Castro", 6, "Quinto A", 43242, "Granada", "Granada"));
+
+    /**
+     * @type {Estudiante}
+     * @description Estudiante: Marta Sánchez.
+     */
     let estudiante2 = new Estudiante("Marta Sánchez", 22, new Direccion("Azorín", 32, "Bajo B", 53242, "Maracena", "Granada"));
+
+    /**
+     * @type {Estudiante}
+     * @description Estudiante: Marc Casadó.
+     */
     let estudiante3 = new Estudiante("Marc Casadó", 21, new Direccion("Náyades", 107, "", 12952, "Sant Pere de Vilamajor", "Barcelona"));
+
+    /**
+     * @type {Estudiante}
+     * @description Estudiante: Julian Carax.
+     */
     let estudiante4 = new Estudiante("Julian Carax", 22, new Direccion("Abad Moya", 66, "Tercero D", 12805, "Alcalá la Real", "Jaén"));
 
+    /**
+     * @type {Asignatura}
+     * @description Asignatura: Matemática Discreta.
+     */
     const matematicaDiscreta = new Asignatura("Matemática Discreta");
+
+    /**
+     * @type {Asignatura}
+     * @description Asignatura: Lógica.
+     */
     const logica = new Asignatura("Lógica");
+
+    /**
+     * @type {Asignatura}
+     * @description Asignatura: Sistemas Digitales.
+     */
     const sistemasDigitales = new Asignatura("Sistemas Digitales");
+
+    /**
+     * @type {Asignatura}
+     * @description Asignatura: Ingeniería de Computadores.
+     */
     const ingComputadores = new Asignatura("Ingeniería de Computadores");
-    
+
     console.log("Estudiantes y asignaturas creados con éxito");
 
     // Eliminación de estudiantes/asignaturas
 
+    /**
+     * Elimina al estudiante Julian Carax de la lista de estudiantes.
+     */
     ListadoEstudiantes.eliminaEstudiante(estudiante4);
+
+    /**
+     * Elimina la asignatura Ingeniería de Computadores de la lista de asignaturas.
+     */
     ListadoAsignaturas.eliminaAsignatura(ingComputadores);
 
     console.log("Estudiantes y asignaturas eliminados con éxito");
 
     //? Matriculación y desmatriculación de estudiantes en asignaturas con las funciones matricularEstudiante y desmatricularEstudiante
 
-    try{
-    estudiante1.matricularEstudiante(logica, sistemasDigitales, ingComputadores);
-    estudiante2.matricularEstudiante(matematicaDiscreta, logica);
-    estudiante3.matricularEstudiante(logica, ingComputadores);
-    estudiante4.matricularEstudiante(sistemasDigitales);
-    } catch (error){
+    /**
+     * Matricula a los estudiantes en las asignaturas correspondientes.
+     * Si ocurre un error durante el proceso de matriculación, se captura y muestra en la consola.
+     */
+    try {
+        estudiante1.matricularEstudiante(logica, sistemasDigitales, ingComputadores);
+        estudiante2.matricularEstudiante(matematicaDiscreta, logica);
+        estudiante3.matricularEstudiante(logica, ingComputadores);
+        estudiante4.matricularEstudiante(sistemasDigitales);
+    } catch (error) {
         console.log("Ha habido un error al matricular al estudiante");
         console.log(error);
     }
 
     console.log("Estudiantes matriculados con éxito");
 
-    // Desmatriculación de estudiantes
+    /**
+     * Desmatricula al estudiante1 de la asignatura: lógica.
+     */
     estudiante1.desmatricularEstudiante(logica);
+
+    /**
+     * Desmatricula al estudiante2 de la asignatura: matemática discreta.
+     */
     estudiante2.desmatricularEstudiante(matematicaDiscreta);
 
     console.log("Estudiantes desmatriculados con éxito");
 
     //? Adición de estudiantes y asignaturas a sus respectivas listas con las funciones agregaEstudiante y agregaAsignatura
 
-    try{
-    listaEstudiantes.agregaEstudiante(estudiante1);
-    listaEstudiantes.agregaEstudiante(estudiante2);
-    listaEstudiantes.agregaEstudiante(estudiante3);
+    /**
+     * Agrega estudiantes y asignaturas a sus respectivas listas.
+     * Si ocurre un error durante el proceso, se captura y muestra en la consola.
+     */
+    try {
+        listaEstudiantes.agregaEstudiante(estudiante1);
+        listaEstudiantes.agregaEstudiante(estudiante2);
+        listaEstudiantes.agregaEstudiante(estudiante3);
 
-    listaAsignaturas.agregaAsignatura(logica);
-    listaAsignaturas.agregaAsignatura(sistemasDigitales);
-    listaAsignaturas.agregaAsignatura(matematicaDiscreta);
-    listaAsignaturas.agregaAsignatura(ingComputadores);
-    } catch (error){
+        listaAsignaturas.agregaAsignatura(logica);
+        listaAsignaturas.agregaAsignatura(sistemasDigitales);
+        listaAsignaturas.agregaAsignatura(matematicaDiscreta);
+        listaAsignaturas.agregaAsignatura(ingComputadores);
+    } catch (error) {
         console.log("Ha habido un error al agregar al estudiante/asignatura a la lista");
         console.log(error);
     }
@@ -517,19 +716,40 @@ function prueba(){
 
     //? Calificación de estudiantes en asignaturas con la función calificarEstudiante
 
-    try{
-    console.log("CALIFICACIÓN DE ESTUDIANTES");
-    estudiante1.calificarEstudiante(sistemasDigitales, 9);
-    estudiante1.calificarEstudiante(sistemasDigitales, 7);
-    estudiante1.calificarEstudiante(ingComputadores, 9);
-    estudiante2.calificarEstudiante(matematicaDiscreta, 5);
-    console.log("\n\n");
-    } catch (error){
+    /**
+     * Califica a los estudiantes en las asignaturas correspondientes.
+     * Si ocurre un error durante el proceso de calificación, se captura y muestra en la consola.
+     */
+    try {
+        console.log("CALIFICACIÓN DE ESTUDIANTES");
+
+        /**
+         * Califica al estudiante1 en Sistemas Digitales con nota 9.
+         */
+        estudiante1.calificarEstudiante(sistemasDigitales, 9);
+
+        /**
+         * Califica al estudiante1 en Sistemas Digitales con nota 7.
+         */
+        estudiante1.calificarEstudiante(sistemasDigitales, 7);
+
+        /**
+         * Califica al estudiante1 en Ingeniería de Computadores con nota 9.
+         */
+        estudiante1.calificarEstudiante(ingComputadores, 9);
+
+        /**
+         * Califica al estudiante2 en Matemática Discreta con nota 5.
+         */
+        estudiante2.calificarEstudiante(matematicaDiscreta, 5);
+
+        console.log("\n\n");
+    } catch (error) {
         console.log("Ha habido un error al calificar al estudiante");
         console.log(error);
     }
 
-    console.log("Estudiantes calificados con éxito");    
+    console.log("Estudiantes calificados con éxito");
 }
 
 // ****************** Programa principal *****************************

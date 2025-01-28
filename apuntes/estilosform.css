@@ -1,0 +1,15 @@
+/* El campo cumple las restricciones según validación nativa */
+input:valid{
+    background-color: green;
+}
+
+
+/* El campo NO cumple las restricciones según validación nativa */
+input:invalid{
+    background-color: red;
+}
+
+/* El campo cumple las restricciones según validación mixta */
+
+
+/* El campo NO cumple las restricciones según validación mixta */
