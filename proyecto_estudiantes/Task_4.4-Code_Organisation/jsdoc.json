@@ -1,12 +1,12 @@
 {
     "source": {
-      "include": ["js/main.js"],
+      "include": ["./js"],
       "exclude": ["node_modules"],
-      "includePattern": ".*\\.js$",
-      "excludePattern": ".*\\.test\\.js$"
+      "includePattern": ".+\\.js(doc|x)?$",
+      "excludePattern": "(^|\\/|\\\\)_"
     },
     "opts": {
-      "destination": "documentacion",
+      "destination": "./documentacion",
       "template": "node_modules/minami",
       "recurse": true
     },
