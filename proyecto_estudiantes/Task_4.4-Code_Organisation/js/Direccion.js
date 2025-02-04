@@ -2,7 +2,7 @@
  * Representa una dirección.
  * @class
  */
-export default class Direccion {
+export class Direccion {
     #calle;
     #numero;
     #piso;

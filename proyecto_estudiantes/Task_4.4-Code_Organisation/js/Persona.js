@@ -1,9 +1,8 @@
-
 /**
  * Representa una persona genérica.
  * @class
  */
-export default class Persona {
+export class Persona {
     #nombre;
     #edad;
     #direccion;
@@ -49,4 +48,4 @@ export default class Persona {
     get direccion() {
         return this.#direccion;
     }
-}   
+}

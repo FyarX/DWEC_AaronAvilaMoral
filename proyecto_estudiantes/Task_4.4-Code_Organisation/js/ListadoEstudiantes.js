@@ -2,7 +2,7 @@
  * Representa un listado de estudiantes.
  * @class
  */
-export default class ListadoEstudiantes {
+export class ListadoEstudiantes {
 
     #listaEstudiantes;
 

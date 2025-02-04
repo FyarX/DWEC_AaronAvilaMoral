@@ -205,6 +205,10 @@ function prueba() {
 }
 
 // ****************** Programa principal *****************************
+/**
+ * Muestra el menú principal y maneja la interacción del usuario.
+ * @function
+ */
 function mostrarMenu(){
 
     console.log("Bienvenido a Gestion de Estudiantes y Asignaturas, selecciona con que deseas interactuar:");
@@ -231,7 +235,9 @@ function mostrarMenu(){
             
             const eleccionEstudiante = prompt("Selecciona el número de la opción deseada:")
             switch(eleccionEstudiante){
-                //? AGREGAR ESTUDIANTE
+                /*
+                * Agrega un estudiante a la lista de estudiantes.
+                */
                 case "1": 
                     console.clear();
 
@@ -286,7 +292,9 @@ function mostrarMenu(){
 
                     break;
 
-                //? ELIMINAR ESTUDIANTE
+                /*
+                * Elimina un estudiante de la lista de estudiantes.
+                */
                 case "2":
                     console.clear();
 
@@ -300,7 +308,9 @@ function mostrarMenu(){
                     
                     break;
 
-                //? MATRICULAR EN UNA ASIGNATURA
+                /*
+                * Matricula un estudiante en una asignatura.
+                */
                 case "3":
                     console.clear();
 
@@ -328,7 +338,9 @@ function mostrarMenu(){
                     }
                     break;
 
-                //? DESMATRICULAR DE UNA ASIGNATURA
+                /*
+                * Desmatricula un estudiante de una asignatura.
+                */
                 case "4":
                     console.clear();
 
@@ -356,7 +368,9 @@ function mostrarMenu(){
                     }
                     break;
 
-                //? MOSTRAR HISTORIAL DE MATRICULACIÓN-DESMATRICULACIÓN
+                /*
+                * Muestra el historial de matriculaciones y desmatriculaciones de un estudiante.
+                */
                 case "5":
                     console.clear();
 
@@ -370,7 +384,9 @@ function mostrarMenu(){
 
                     break;
 
-                //? CALIFICAR ESTUDIANTE
+                /*
+                * Califica a un estudiante en una asignatura.
+                */
                 case "6":
                     console.clear();
 
@@ -395,7 +411,9 @@ function mostrarMenu(){
 
                     break;
 
-                //? MOSTRAR PROMEDIO
+                /*
+                * Muestra el promedio de un estudiante.
+                */
                 case "7":
                     console.clear();
 
@@ -408,7 +426,9 @@ function mostrarMenu(){
 
                     break;
 
-                //? MOSTRAR REPORTE COMPLETO
+                /*
+                * Muestra el reporte completo de los estudiantes.
+                */
                 case "8":
                     console.clear();
                     console.log("Reporte completo de los estudiantes:");
@@ -416,7 +436,9 @@ function mostrarMenu(){
 
                     break;
 
-                //? SALIR
+                /*
+                * Salir del programa.
+                */
                 case "9":
                     console.clear();
                     console.log("Saliendo del programa...");
@@ -443,7 +465,9 @@ function mostrarMenu(){
 
             const eleccionAsignatura = prompt("Selecciona el número de la opción deseada:")
             switch(eleccionAsignatura){
-                //? AGREGAR ASIGNATURA
+                /*
+                * Agrega una asignatura a la lista de asignaturas.
+                */
                 case "1":
                     console.clear();
                     try{
@@ -462,7 +486,9 @@ function mostrarMenu(){
 
                     break;
                 
-                //? ELIMINAR ASIGNATURA
+                /*
+                * Elimina una asignatura de la lista de asignaturas.
+                */
                 case "2":
                     console.clear();
 
@@ -476,7 +502,9 @@ function mostrarMenu(){
 
                     break;
                 
-                //? CALCULAR PROMEDIO DE LAS CALIFICACIONES DE UNA ASIGNATURA
+                /*
+                * Calcula el promedio de las calificaciones de una asignatura.
+                */
                 case "3":
                     console.clear();
 
@@ -490,7 +518,9 @@ function mostrarMenu(){
 
                     break;
                 
-                //? BUSCAR ASIGNATURA
+                /*
+                * Busca una asignatura en la lista de asignaturas.
+                */
                 case "4":
                     console.clear();
 
@@ -504,7 +534,9 @@ function mostrarMenu(){
 
                     break;
                 
-                //? CALIFICAR ASIGNATURA
+                /*
+                * Califica a los estudiantes de una asignatura.
+                */
                 case "5":
                     console.clear();
 
@@ -521,7 +553,9 @@ function mostrarMenu(){
 
                     break;
 
-                //? SALIR
+                /*
+                * Salir del programa.
+                */
                 case "6":
                     console.clear();
                     console.log("Saliendo del programa...");
@@ -548,7 +582,9 @@ function mostrarMenu(){
             //? Opciones sobre la lista de estudiantes
             switch(eleccionListaEstudiantes){
 
-                //? CALCULAR PROMEDIO GENERAL DE LOS ESTUDIANTES
+                /*
+                * Calcula el promedio general de los estudiantes.
+                */
                 case "1":
                     console.clear();
                     
@@ -557,7 +593,9 @@ function mostrarMenu(){
 
                     break;
                 
-                //? ELIMINAR ESTUDIANTES DE LA LISTA
+                /*
+                * Elimina un estudiante de la lista de estudiantes.
+                */
                 case "2":
                     console.clear();
 
@@ -576,7 +614,9 @@ function mostrarMenu(){
                     
                     break;
                 
-                //? BUSCAR A UN ESTUDIANTE
+                /*
+                * Busca un estudiante en la lista de estudiantes.
+                */
                 case "3":
                     console.clear();
 
@@ -590,7 +630,9 @@ function mostrarMenu(){
 
                     break;
                 
-                //? SALIR
+                /*
+                * Salir del programa.
+                */
                 case "4":
                     console.clear();
                     console.log("Saliendo del programa...");

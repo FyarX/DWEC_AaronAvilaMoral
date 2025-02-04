@@ -7,7 +7,7 @@ import Persona from './Persona.js';
  * @extends Persona
  * @class
  */
-export default class Estudiante extends Persona {
+export class Estudiante extends Persona {
     #id;
     #asignaturas;
     #relacion;

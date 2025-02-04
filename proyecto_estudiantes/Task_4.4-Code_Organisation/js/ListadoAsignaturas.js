@@ -3,7 +3,7 @@
  * Representa un listado de asignaturas.
  * @class
  */
-export default class ListadoAsignaturas {
+export class ListadoAsignaturas {
 
     #listaAsignaturas;
 
