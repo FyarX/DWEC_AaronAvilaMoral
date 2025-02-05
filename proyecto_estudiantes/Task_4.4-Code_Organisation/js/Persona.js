@@ -2,7 +2,7 @@
  * Representa una persona genérica.
  * @class
  */
-export class Persona {
+export default class Persona {
     #nombre;
     #edad;
     #direccion;

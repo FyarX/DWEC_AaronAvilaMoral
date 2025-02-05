@@ -100,17 +100,29 @@ function prueba() {
 
     console.log("Estudiantes y asignaturas creados con éxito");
 
+    listaEstudiantes.agregaEstudiante(estudiante1);
+    listaEstudiantes.agregaEstudiante(estudiante2);
+    listaEstudiantes.agregaEstudiante(estudiante3);
+    listaEstudiantes.agregaEstudiante(estudiante4);
+    
+    listaAsignaturas.agregaAsignatura(matematicaDiscreta);
+    listaAsignaturas.agregaAsignatura(logica);
+    listaAsignaturas.agregaAsignatura(sistemasDigitales);
+    listaAsignaturas.agregaAsignatura(ingComputadores);
+
+
     // Eliminación de estudiantes/asignaturas
 
     /**
      * Elimina al estudiante Julian Carax de la lista de estudiantes.
      */
-    ListadoEstudiantes.eliminaEstudiante(estudiante4);
+    console.log(listaEstudiantes.getListadoEstudiantes());
+    listaEstudiantes.eliminaEstudiante(estudiante4);
 
     /**
      * Elimina la asignatura Ingeniería de Computadores de la lista de asignaturas.
      */
-    ListadoAsignaturas.eliminaAsignatura(ingComputadores);
+    listaAsignaturas.eliminaAsignatura(ingComputadores);
 
     console.log("Estudiantes y asignaturas eliminados con éxito");
 
