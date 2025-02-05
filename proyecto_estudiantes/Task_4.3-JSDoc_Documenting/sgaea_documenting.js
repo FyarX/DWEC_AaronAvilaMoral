@@ -648,15 +648,29 @@ function prueba() {
 
     console.log("Estudiantes y asignaturas creados con éxito");
 
-    listaEstudiantes.agregaEstudiante(estudiante1);
-    listaEstudiantes.agregaEstudiante(estudiante2);
-    listaEstudiantes.agregaEstudiante(estudiante3);
-    listaEstudiantes.agregaEstudiante(estudiante4);
-    
-    listaAsignaturas.agregaAsignatura(matematicaDiscreta);
-    listaAsignaturas.agregaAsignatura(logica);
-    listaAsignaturas.agregaAsignatura(sistemasDigitales);
-    listaAsignaturas.agregaAsignatura(ingComputadores);
+
+    //? Adición de estudiantes y asignaturas a sus respectivas listas con las funciones agregaEstudiante y agregaAsignatura
+
+    /**
+     * Agrega estudiantes y asignaturas a sus respectivas listas.
+     * Si ocurre un error durante el proceso, se captura y muestra en la consola.
+     */
+    try {
+        listaEstudiantes.agregaEstudiante(estudiante1);
+        listaEstudiantes.agregaEstudiante(estudiante2);
+        listaEstudiantes.agregaEstudiante(estudiante3);
+
+        listaAsignaturas.agregaAsignatura(logica);
+        listaAsignaturas.agregaAsignatura(sistemasDigitales);
+        listaAsignaturas.agregaAsignatura(matematicaDiscreta);
+        listaAsignaturas.agregaAsignatura(ingComputadores);
+    } catch (error) {
+        console.log("Ha habido un error al agregar al estudiante/asignatura a la lista");
+        console.log(error);
+    }
+
+    console.log("Estudiantes y asignaturas agregados con éxito");
+
     // Eliminación de estudiantes/asignaturas
 
     /**
@@ -701,27 +715,6 @@ function prueba() {
 
     console.log("Estudiantes desmatriculados con éxito");
 
-    //? Adición de estudiantes y asignaturas a sus respectivas listas con las funciones agregaEstudiante y agregaAsignatura
-
-    /**
-     * Agrega estudiantes y asignaturas a sus respectivas listas.
-     * Si ocurre un error durante el proceso, se captura y muestra en la consola.
-     */
-    try {
-        listaEstudiantes.agregaEstudiante(estudiante1);
-        listaEstudiantes.agregaEstudiante(estudiante2);
-        listaEstudiantes.agregaEstudiante(estudiante3);
-
-        listaAsignaturas.agregaAsignatura(logica);
-        listaAsignaturas.agregaAsignatura(sistemasDigitales);
-        listaAsignaturas.agregaAsignatura(matematicaDiscreta);
-        listaAsignaturas.agregaAsignatura(ingComputadores);
-    } catch (error) {
-        console.log("Ha habido un error al agregar al estudiante/asignatura a la lista");
-        console.log(error);
-    }
-
-    console.log("Estudiantes y asignaturas agregados con éxito");
 
     //? Calificación de estudiantes en asignaturas con la función calificarEstudiante
 

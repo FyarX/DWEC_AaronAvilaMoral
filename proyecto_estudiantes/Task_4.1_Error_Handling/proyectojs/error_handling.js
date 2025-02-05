@@ -450,15 +450,23 @@ const logica = new Asignatura("Lógica");
 const sistemasDigitales = new Asignatura("Sistemas Digitales");
 const ingComputadores = new Asignatura("Ingeniería de Computadores");
 
-listaEstudiantes.agregaEstudiante(estudiante1);
-listaEstudiantes.agregaEstudiante(estudiante2);
-listaEstudiantes.agregaEstudiante(estudiante3);
-listaEstudiantes.agregaEstudiante(estudiante4);
+//? Adición de estudiantes y asignaturas a sus respectivas listas con las funciones agregaEstudiante y agregaAsignatura
 
-listaAsignaturas.agregaAsignatura(matematicaDiscreta);
-listaAsignaturas.agregaAsignatura(logica);
-listaAsignaturas.agregaAsignatura(sistemasDigitales);
-listaAsignaturas.agregaAsignatura(ingComputadores);
+    try {
+        listaEstudiantes.agregaEstudiante(estudiante1);
+        listaEstudiantes.agregaEstudiante(estudiante2);
+        listaEstudiantes.agregaEstudiante(estudiante3);
+
+        listaAsignaturas.agregaAsignatura(logica);
+        listaAsignaturas.agregaAsignatura(sistemasDigitales);
+        listaAsignaturas.agregaAsignatura(matematicaDiscreta);
+        listaAsignaturas.agregaAsignatura(ingComputadores);
+    } catch (error) {
+        console.log("Ha habido un error al agregar al estudiante/asignatura a la lista");
+        console.log(error);
+    }
+
+    console.log("Estudiantes y asignaturas agregados con éxito");
 
 //? Matriculación y desmatriculación de estudiantes en asignaturas
 
@@ -474,22 +482,6 @@ estudiante4.matricularEstudiante(sistemasDigitales);
 
 estudiante1.desmatricularEstudiante(logica);
 estudiante2.desmatricularEstudiante(matematicaDiscreta);
-
-//? Adición de estudiantes y asignaturas a sus respectivas listas
-
-try{
-listaEstudiantes.agregaEstudiante(estudiante1);
-listaEstudiantes.agregaEstudiante(estudiante2);
-listaEstudiantes.agregaEstudiante(estudiante3);
-
-listaAsignaturas.agregaAsignatura(logica);
-listaAsignaturas.agregaAsignatura(sistemasDigitales);
-listaAsignaturas.agregaAsignatura(matematicaDiscreta);
-listaAsignaturas.agregaAsignatura(ingComputadores);
-} catch (error){
-    console.log("Ha habido un error al agregar al estudiante/asignatura a la lista");
-    console.log(error);
-}
 
 
 //? Calificación de estudiantes
