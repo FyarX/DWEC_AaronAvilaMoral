@@ -111,6 +111,7 @@ function prueba() {
         listaEstudiantes.agregaEstudiante(estudiante1);
         listaEstudiantes.agregaEstudiante(estudiante2);
         listaEstudiantes.agregaEstudiante(estudiante3);
+        listaEstudiantes.agregaEstudiante(estudiante4);
 
         listaAsignaturas.agregaAsignatura(logica);
         listaAsignaturas.agregaAsignatura(sistemasDigitales);
