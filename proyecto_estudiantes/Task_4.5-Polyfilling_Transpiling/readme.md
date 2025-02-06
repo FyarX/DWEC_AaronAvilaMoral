@@ -1,5 +1,23 @@
-# 📄 Documentación Proyecto SGAEA con JSDoc
-Esta documentación ha sido realizada por Aarón Ávila Moral con la herramienta [JSDoc](https://jsdoc.app/)
+<!-- # 📄 Generar Polyfilling y Transpilación 
+Esta documentación ha sido realizada por Aarón Ávila Moral 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## 🖥️ Comando para generar la documentación del proyecto
 ```
@@ -11,7 +29,7 @@ sgaea_documenting.js.html
 ```
 
 ## ⚙️ Como se ha creado la documentación
-* **Instalación de Node.js y JSDoc.** Descarga de Node.js desde [aquí](https://nodejs.org/es) y uso de este comando en la terminal del proyecto para hacer lo propio con JSDoc:
+* **Instalación de Node.js y JSDoc.** Descarga de Node.js desde [aquí]{https://nodejs.org/es} y uso de este comando en la terminal del proyecto para hacer lo propio con JSDoc:
 ```
 npm install -g jsdoc
 ```
@@ -26,4 +44,4 @@ con información como archivos a incluir, excluir y la carpeta donde se va a des
 
 * **Ejecución del archivo de documentación.** Comprobación de que no ha habido ningún problema a la hora de crear el archivo y que todo el código ha sido documentado correctamente
 
-* **Creación de un archivo readme.md.** En el se indica como ha sido tu proceso de forma clara y elegante
+* **Creación de un archivo readme.md.** En el se indica como ha sido tu proceso de forma clara y elegante -->
