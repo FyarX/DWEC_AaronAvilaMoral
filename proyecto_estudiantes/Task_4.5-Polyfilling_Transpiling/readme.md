@@ -20,8 +20,7 @@ Una pequeña explicación del funcionamiento de cada paquete:
 * **@babel/core y @babel/preset-env** -> Configuran Babel para transpilar código moderno.
 * **babel-loader** -> Carga Babel en el webpack para poder transpilarlo.
 * **core-js** -> Librería que aporta polyfills para las nuevas implementaciones de JavaScript.
-* **regenerator-runtime** -> Provee polyfills para funciones asíncronas.
-* **copy-webpack-plugin** -> P
+* **regenerator-runtime y copy-webpack-plugin** -> Proveen polyfills para funciones asíncronas.
 * **cross-env** -> Permite que el programa se pueda ejecutar en varios sistemas operativos.
 * **html-webpack-plugin** -> Genera un HTML con el que se puede comprobar el correcto funcionamiento en diferentes navegadores
 
@@ -86,7 +85,7 @@ export default {
 ```
 
 > [!NOTE]
-> El nombre de los webpacks es meramente orientativo, pero se recomienda que sean los mostrados anteriormente o similares
+> El nombre de los webpacks es meramente orientativo, pero se recomienda que sean los mostrados anteriormente o similares.
 
 ## ⚙️ 4. Configuración de Babel
 Se requiere la creación de un archivo llamado `babel.config.js` de cara a poder configurar Babel. Dentro de este encontraremos las directivas que se le dan a Babel para que al transpilar el código este se adapte a los navegadores que deseemos. El archivo debe de contener el siguiente código:
@@ -105,7 +104,7 @@ export default {
   };
 ```
 > [!WARNING]
-> Las directrices se adaptan al objetivo que se busque, puede variar respecto al usado en este proyecto
+> Las directrices se adaptan al objetivo que se busque, puede variar respecto al usado en este proyecto.
 
 ## 🖥️ 5. Configuración del HTML
 Si queremos que junto a los bundles se genere tambien un archivo .html en el que poder comprobar el correcto funcionamiento en ciertos navegadores es necesario crear un index.html en el que se realice una llamada a ambos bundles. De esta manera, cada navegador seleccionará el que se adapte a sus características y lo ejecutará. La dependencia `html-webpack-plugin` copiará el archivo que hemos creado y lo colocará en las carpetas con los bundles. El codigo a colocar en el index.html es el siguiente:
@@ -114,9 +113,24 @@ Si queremos que junto a los bundles se genere tambien un archivo .html en el que
     <script defer src="bundle.antiguo.js"></script>
 ```
 > [!NOTE]
-> Recueda añadir estas lineas dentro de la etiqueta **_head_** de nuestro index.html
+> Recueda añadir estas lineas dentro de la etiqueta **_head_** de nuestro index.html.
 
 ## ⏭️ 6. Creación de los scripts necesarios
+Para simplificar el proceso de creación y ejecución de Webpack y los bundles se recomienda crear una serie de _scripts_ o atajos en nuestro `package.json`. En mi caso he creado los siguientes:
+```
+    "antiguo": "cross-env-shell webpack --config webpack.antiguo.js --mode $modo",
+    "moderno": "cross-env-shell webpack --config webpack.moderno.js --mode $modo",
+    "des": "cross-env-shell modo=development run-s antiguo moderno",
+    "prod": "cross-env-shell modo=production run-s antiguo moderno",
+    "clean:comp": "rimraf compilado",
+    "start": "run-s clean:comp des prod"
+```
+* **"antiguo"** -> Crea un bundle el cual permite ejecutar el programa en navegadores antiguos.
+* **"moderno"** -> Crea un bundle el cual permite ejecutar el programa en navegadores modernos.
+* **"des"** -> Ejecuta "antiguo" y "moderno" en modo **desarrollo**.
+* **"prod"** -> Ejecuta "antiguo" y "moderno" en modo **producción**.
+* **"clean:comp"** -> Elimina la carpeta _compilado_.
+* **"start"** -> Elimina la carpeta _compilado_ y genera una nueva con los cambios aplicados.
 
 ## ☑️ 7. Generación de los bundles y comprobación
 
@@ -128,33 +142,3 @@ Si queremos que junto a los bundles se genere tambien un archivo .html en el que
 
 
 
-
-
-
-
-## 🖥️ Comando para generar la documentación del proyecto
-```
-npm run doc
-```
-Recuerda que el nombre del archivo que deberás abrir para verlo es: 
-```
-sgaea_documenting.js.html
-```
-
-## ⚙️ Como se ha creado la documentación
-* **Instalación de Node.js y JSDoc.** Descarga de Node.js desde [aquí]{https://nodejs.org/es} y uso de este comando en la terminal del proyecto para hacer lo propio con JSDoc:
-```
-npm install -g jsdoc
-```
-
-* **Adición de comentarios con JSDoc.** En el enlace justo debajo del título se puede encontrar toda la documentación oficial usada como guia en el proceso.
-
-* **Creación de un script npm con el que generar la documentación** Añadido de un un script al package.json y creacion de un archivo de configuración llamado
-```
-jsdoc.json
-```
-con información como archivos a incluir, excluir y la carpeta donde se va a destinar la documentación
-
-* **Ejecución del archivo de documentación.** Comprobación de que no ha habido ningún problema a la hora de crear el archivo y que todo el código ha sido documentado correctamente
-
-* **Creación de un archivo readme.md.** En el se indica como ha sido tu proceso de forma clara y elegante
