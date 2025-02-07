@@ -134,8 +134,14 @@ Para simplificar el proceso de creación y ejecución de Webpack y los bundles s
 
 ## ☑️ 7. Generación de los bundles y comprobación
 
-
-
+El último paso es generar los bundles con el código transpilado y adaptado para cualquier tipo de navegador. Para esto nos ayudaremos del _script_ que hemos creado anteriormente llamado **"start"**, por lo que debemos escribir el siguiente codigo en la linea de comandos de la carpeta de nuestro proyecto:
+```
+npm run start
+```
+Tras esto, el _script_ eliminará la carpeta con los bundles (al ser la primera vez que lo ejecutamos no existirá ninguna, por lo que esto no se producirá) y crea unos nuevos con el contenido actualizado de nuestro programa principal. La estructura será esta:
+* **compilado** -> Una carpeta que contiene otras dos mas, la carpeta **production** y la carpeta **development**:
+    - **production** -> Contiene los bundles optimizados para producción
+    - **development** -> Contiene los bundles optimizados para desarrollo
 
 
 
