@@ -18,8 +18,11 @@ npm install -g jsdoc
 
 * **Adición de comentarios con JSDoc.** En el enlace justo debajo del título se puede encontrar toda la documentación oficial usada como guia en el proceso.
 
-* **Creación de un script npm con el que generar la documentación** Añadido de un un script al package.json y creacion de un archivo de configuración llamado `jsdoc.json` con información como archivos a incluir, excluir y la carpeta donde se va a destinar la documentación
+* **Creación de un script npm con el que generar la documentación** Añadido de un un script al package.json y creacion de un archivo de configuración llamado `jsdoc.json` con información como archivos a incluir, excluir y la carpeta donde se va a destinar la documentación. Los scripts que se han añadido son los siguientes:
+```
+    "doc": "npx jsdoc -c jsdoc.json",
+    "clean": "rimraf documentacion",
+    "all": "npm-run-all clean doc"
+```
 
-* **Ejecución del archivo de documentación.** Comprobación de que no ha habido ningún problema a la hora de crear el archivo y que todo el código ha sido documentado correctamente
-
-* **Creación de un archivo readme.md.** En el se indica como ha sido el proceso de forma clara y elegante
+* **Ejecución del archivo de documentación.** Comprobación de que no ha habido ningún problema a la hora de crear el archivo y que todo el código ha sido documentado correctamente. El codigo a ejecutar en la linea de comandos de nuestro proyecto es `npm run all`. Este comando elimina la documentacion hasta ahora y genera una nueva con todos los cambios aplicados
