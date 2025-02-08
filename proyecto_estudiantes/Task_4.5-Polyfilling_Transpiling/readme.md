@@ -138,11 +138,34 @@ El último paso es generar los bundles con el código transpilado y adaptado par
 ```
 npm run start
 ```
-Tras esto, el _script_ eliminará la carpeta con los bundles (al ser la primera vez que lo ejecutamos no existirá ninguna, por lo que esto no se producirá) y crea unos nuevos con el contenido actualizado de nuestro programa principal. La estructura será esta:
+Tras esto, el _script_ eliminará la carpeta con los bundles (al ser la primera vez que lo ejecutamos no existirá ninguna, por lo que esto no se producirá) 
+y crea unos nuevos con el contenido actualizado de nuestro programa principal. La estructura será esta:
 * **compilado** -> Una carpeta que contiene otras dos mas, la carpeta **production** y la carpeta **development**:
     - **production** -> Contiene los bundles optimizados para producción
     - **development** -> Contiene los bundles optimizados para desarrollo
 
+Ahora, para comprobar que el proceso se ha realizado correctamente lo idoneo es utilizar varios navegadores, tanto antiguos como modernos, 
+y verificar que el programa se ejecuta sin ningun tipo de problema. Para ello se empleará la herramienta [BrowserStack](https://www.browserstack.com/), la cual se encarga
+de recibir un dominio y desplegarlo en decenas de navegadores y versiones diferentes. Antes de nada es necesario subir nuestro proyecto a un dominio. Como es un proyecto que no va
+a escalar lo suficiente como para adquirir un dominio de pago, se ha optado por un dominio gratuito, el cual puede obtenerse gracias a la herramienta [Netlify](https://www.netlify.com/),
+para la cual hay que seguir los siguientes pasos:
+
+* Iniciar sesión en la página.
+* Vincular nuestro usuario con el de Github.
+* Seleccionar la opción _"Deploy new site"_ y seleccionamos el repositorio que queremos ejecutar.
+* En la opción _"Publish directory"_ elegimos la ruta de la carpeta producción creada anteriormente dentro del la carpeta compilado.
+* Pulsamos sobre la opción _"Deploy site"_ para desplegar la web.
+
+![Imagen Netlify](ruta a indicar)
+
+Con nuestra web ya desplegada y con un dominio el cual poder usar solo nos queda ir a BrowserStack, iniciar sesión, seleccionar el navegador que deseemos y colocar la URL de nuestro 
+sitio web desplegado y si hemos seguido los pasos correctamente se nos deberia de ejecutar el programa en todos los que cumplan los requisitos que hemos indicado previamente. Para 
+realizar la prueba he utilizado los siguientes navegadores:
+* **Microsoft Edge 80**
+![Prueba Edge]()
+* ****
+![Prueba]()
+* ****
 
 
 

@@ -567,16 +567,15 @@ class ListadoAsignaturas {
 /**
  * Prueba de interacción con estudiantes y asignaturas.
  * 
- * Esta función realiza las siguientes operaciones:
+ * Se realizan las siguientes operaciones:
  * - Crea listas de estudiantes y asignaturas.
  * - Añade estudiantes y asignaturas a sus respectivas listas.
  * - Matricula y desmatricula estudiantes en asignaturas.
  * - Califica a los estudiantes en distintas asignaturas.
  * - Elimina estudiantes y asignaturas.
  * 
- * @description Función principal para validar las operaciones con estudiantes y asignaturas.
+ * @description Validación de las operaciones con estudiantes y asignaturas.
  */
-function prueba() {
 
     console.log("-------------Pruebas de interacción con estudiantes y asignaturas-----------------");
 
@@ -753,7 +752,9 @@ function prueba() {
     }
 
     console.log("Estudiantes calificados con éxito");
-}
+
+
+
 
 // ****************** Programa principal *****************************
 /**
@@ -1208,10 +1209,6 @@ function mostrarMenu(){
             mostrarMenu();
     }
     }
-    
-    // Llamada al metodo de prueba de inicialización de datos
-    prueba();
-
 
     // Llamada al método principal
     mostrarMenu();
