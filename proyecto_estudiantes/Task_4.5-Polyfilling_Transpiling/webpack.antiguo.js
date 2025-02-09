@@ -14,6 +14,9 @@ export default merge(common, {
                 exclude: /node_modules/, 
                 use: {
                     loader: 'babel-loader', // Babel se encarga de transpilar el código.
+                    options: {
+                        presets: ['@babel/preset-env'],
+                      },
                 }
             },
         ],
