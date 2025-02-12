@@ -156,17 +156,17 @@ para la cual hay que seguir los siguientes pasos:
 * En la opción _"Publish directory"_ elegimos la ruta de la carpeta producción creada anteriormente dentro del la carpeta compilado.
 * Pulsamos sobre la opción _"Deploy site"_ para desplegar la web.
 
-![Imagen Netlify](ruta a indicar)
+![Imagen Netlify](../img_readme/netlify_working.png)
 
 Con nuestra web ya desplegada y con un dominio el cual poder usar solo nos queda ir a BrowserStack, iniciar sesión, seleccionar el navegador que deseemos y colocar la URL de nuestro 
 sitio web desplegado y si hemos seguido los pasos correctamente se nos deberia de ejecutar el programa en todos los que cumplan los requisitos que hemos indicado previamente. Para 
 realizar la prueba he utilizado los siguientes navegadores:
 * **Microsoft Edge 80**
-![Prueba Edge]()
-* ****
-![Prueba]()
-* ****
-
+![Prueba Edge](../img_readme/edge_80.png)
+* **Google Chrome 50**
+![Prueba Chrome](../img_readme/chrome_50.png)
+* **Mozilla Firefox 49**
+![Prueba Firefox](../img_readme/firefox_49.png)
 
 
 
