@@ -1,0 +1,21 @@
+{
+  "type": "module",
+  "name": "main",
+  "version": "1.0.0",
+  "main": "js/main.js",
+  "devDependencies": {
+    "clean-jsdoc-theme": "^4.3.0",
+    "jsdoc": "^4.0.4",
+    "minami": "^1.2.3",
+    "npm-run-all": "^4.1.5",
+    "rimraf": "^6.0.1"
+  },
+  "scripts": {
+    "doc": "npx jsdoc -c jsdoc.json",
+    "clean": "rimraf documentacion",
+    "all": "npm-run-all clean doc"
+  },
+  "keywords": [],
+  "author": "Aarón Ávila",
+  "license": "ISC"
+}
