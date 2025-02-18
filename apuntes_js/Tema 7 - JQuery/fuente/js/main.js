@@ -56,5 +56,47 @@ $(() => {
 
     // Eliminar un elemento
     $("section").remove();
+
+    //? Efectos
+    $("p").hide();
+    $("p").show();
+    $("p").hide("slow", () => {
+        alert("Se ha ocultado el párrafo");
+    });
+    $("p").toggle();
+    $("p").fadeIn();
+    $("p").fadeOut();
+    $("p").fadeToggle();
+
+
+    //? Animaciones
+    $("p").animate({
+        width: "100%",
+        opacity: 0.5,
+        fontSize: "3em",
+        left: "100px"
+    }, 1000);
+
+
+    //? Asincronía
+    const url = "https://jsonplaceholder.typicode.com/posts";
+    $.ajax({
+        url: url,
+        method: "GET",
+    });
+
+    $.then((data) => {
+        console.log(data);
+
+        // Hacer que se muestre l
+    });
+
+    $.catch((error) => {
+        console.log(error);
+    });
+
+    $.finally(() => {
+        console.log("Petición finalizada");
+    });
 });
 
