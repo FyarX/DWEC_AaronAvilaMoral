@@ -161,12 +161,12 @@ para la cual hay que seguir los siguientes pasos:
 Con nuestra web ya desplegada y con un dominio el cual poder usar solo nos queda ir a BrowserStack, iniciar sesión, seleccionar el navegador que deseemos y colocar la URL de nuestro 
 sitio web desplegado y si hemos seguido los pasos correctamente se nos deberia de ejecutar el programa en todos los que cumplan los requisitos que hemos indicado previamente. Para 
 realizar la prueba he utilizado los siguientes navegadores:
-* **Microsoft Edge 80**
-![Prueba Edge](../img_readme/edge_80.png)
-* **Google Chrome 50**
-![Prueba Chrome](../img_readme/chrome_50.png)
-* **Mozilla Firefox 49**
-![Prueba Firefox](../img_readme/firefox_49.png)
+* **Opera 28**
+![Prueba Edge](../img_readme/opera28.png)
+* **Google Chrome 41**
+![Prueba Chrome](../img_readme/chrome41.png)
+* **Mozilla Firefox 44**
+![Prueba Firefox](../img_readme/firefox44.png)
 
 
 
