@@ -2,6 +2,11 @@
 import HelloWorld from './components/HelloWorld.vue';
 import TheWelcome from './components/TheWelcome.vue';
 import MiComponente from './components/MiComponente.vue';
+import ComponenteCondicional from './components/ComponenteCondicional.vue';
+import Lista from './components/Lista.vue';
+import Eventos from './components/Eventos.vue';
+import Vinculacion from './components/Vinculacion.vue';
+import RenderizacionCondicional from './components/RenderizacionCondicional.vue';
 </script>
 
 <template>
@@ -15,7 +20,12 @@ import MiComponente from './components/MiComponente.vue';
 
   <main>
     <MiComponente />
-    <TheWelcome />
+    <ComponenteCondicional />
+    <RenderizacionCondicional />
+    <Lista />
+    <Eventos />
+    <Vinculacion />
+    <!-- <TheWelcome /> -->
   </main>
 </template>
 
