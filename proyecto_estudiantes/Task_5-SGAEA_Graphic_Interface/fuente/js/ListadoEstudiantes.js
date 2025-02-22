@@ -39,10 +39,17 @@ export class ListadoEstudiantes {
      * @param {Estudiante} estudiante - El estudiante a eliminar.
      * @throws {Error} Si el estudiante no se encuentra en la lista.
      */
-    eliminaEstudiante(estudiante) {
-        if (this.#listaEstudiantes.includes(estudiante)) {
-            // Filtra a todos los estudiantes menos el que queremos eliminar
-            this.#listaEstudiantes = this.#listaEstudiantes.filter(e => e !== estudiante);
+    eliminaEstudiante(nombreEstudiante) {
+        // Comprueba si el nombre de la asignatura es una cadena de texto
+        if (typeof nombreEstudiante !== "string") throw new Error("El nombre del estudiante debe ser una cadena de texto");
+    
+        // Encuentra la asignatura que coincide exactamente con el nombre
+        const estudiante = this.#listaEstudiantes.find(estudiante => estudiante.nombre.toLowerCase() === nombreEstudiante.toLowerCase());
+    
+        // Comprueba si la asignatura está en la lista
+        if (estudiante) {
+            const index = this.#listaEstudiantes.indexOf(estudiante);
+            this.#listaEstudiantes.splice(index, 1);
             console.log("Estudiante eliminado con éxito");
         } else {
             throw new Error("El estudiante no se encuentra en el listado");
@@ -56,24 +63,24 @@ export class ListadoEstudiantes {
     promedioEstudiantes() {
         // Comprueba si hay estudiantes en la lista
         if (this.#listaEstudiantes.length === 0) return "No existe ningún estudiante en la lista";
-
+    
         let sum = 0;
         let contador = 0;
-
+    
         for (let estudiante of this.#listaEstudiantes) {
             // Se obtiene la media de cada estudiante por separado
-            let promEstudiante = estudiante.promedioEstudiante();
-
+            let promEstudiante = Number(estudiante.promedioEstudiante());
+    
             // Si la media es un número, se suma al sumatorio y se incrementa el contador
-            if (typeof promEstudiante === "number") {
+            if (!isNaN(promEstudiante)) {
                 sum += promEstudiante;
                 contador++;
             }
         }
-
+    
         let promedioTotal = (sum / contador).toFixed(2);
         return Number(promedioTotal);
-    }
+    }   
 
     /**
      * Muestra un reporte con el nombre, calificaciones y promedio de cada estudiante.
@@ -105,18 +112,16 @@ export class ListadoEstudiantes {
         if (typeof patron !== "string") {
             throw new Error("El patrón debe ser una cadena de texto");
         }
-
-        // Crea un patrón de búsqueda
-        let patronEstudiante = new RegExp(patron, "i");
-        // Devuelve todos los estudiantes que coinciden con el patrón
-        return this.#listaEstudiantes.filter(estudiante => patronEstudiante.test(estudiante.nombre));
+    
+        // Encuentra el estudiante que coincide exactamente con el patrón
+        return this.#listaEstudiantes.find(estudiante => estudiante.nombre.toLowerCase() === patron.toLowerCase());
     }
 
     /**
      * Obtiene una copia de la lista de estudiantes.
      * @returns {Estudiante[]} Una copia del listado de estudiantes.
      */
-    getListadoEstudiantes() {
+    get listaEstudiantes() {
         // Devuelve una copia de la lista de estudiantes
         return [...this.#listaEstudiantes];
     }

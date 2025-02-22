@@ -62,7 +62,7 @@ export class Estudiante extends Persona {
         }
         const asignaturaMatriculada = this.#asignaturas.find(a => a.nombre === asignatura.nombre);
         if (!asignaturaMatriculada) {
-            throw new Error("El estudiante no está matriculado en esta asignatura");
+            alert("El estudiante no está matriculado en esta asignatura");
         }
         if (nota < 0 || nota > 10) {
             throw new Error("La calificación debe estar entre 0 y 10.");
@@ -100,7 +100,7 @@ export class Estudiante extends Persona {
                 contador++;
             }
         }
-        return contador === 0 ? 0 : `El promedio del estudiante es ${(sumatorio / contador).toFixed(2)}`;
+        return contador === 0 ? 0 : `${(sumatorio / contador).toFixed(2)}`;
     }
 
     /**

@@ -9,8 +9,7 @@
 </head>
 <body>
     <h1>Gestión de Estudiantes y Asignaturas - SGAEA</h1>
-    <section id="main_section">
-        <section id="estudiantes_section">
+        <section id="main_section">
             <section id="est1">
                 <button id="btn1">Crear Estudiante</button>
                 <article id="opt1">
@@ -22,11 +21,11 @@
 
                         <!-- Edad del estudiante -->
                         <label for="edad">Edad:</label>
-                        <input type="number" name="edad" id="edad" required>
+                        <input type="number" name="edad" id="edad" min="6" max="80" required>
 
                         <!-- Calle del estudiante -->
                         <label for="calle">Calle:</label>
-                        <input type="text" name="calle" id="calle" required>
+                        <input type="text" name="calle" id="calle" pattern="^[A-Za-zÀ-ÿ\\s]+$" required>
 
                         <!-- Numero de vivienda -->
                         <label for="numero">Número:</label>
@@ -34,11 +33,11 @@
 
                         <!-- Piso del estudiante -->
                         <label for="piso">Piso:</label>
-                        <input type="number" name="piso" id="piso" required>
+                        <input type="text" name="piso" id="piso" required>
 
                         <!-- Código postal -->
                         <label for="cp">Código Postal:</label>
-                        <input type="number" name="cp" id="cp" pattern="\d{5}" required>
+                        <input type="number" name="cp" id="cp" min="10000" max="99999" required>
 
                         <!-- Provincia -->
                         <label for="provincia">Provincia:</label>
@@ -60,11 +59,40 @@
                 <article id="opt2">
                     <h2>Introduce el nombre del estudiante a eliminar</h2>
                     <form action="#" method="get">
-                        <label for="nombre2">Nombre:</label>
-                        <input type="text" name="nombre2" id="nombre_eliminar" required>
+                        <label for="nombre_eliminar">Nombre:</label>
+                        <input type="text" name="nombre_eliminar" id="nombre_eliminar" required>
                         <button type="submit" id="submit2">Eliminar estudiante</button>
+                    </form>
+                    <article id="salida2"></article>
                 </article>
-                <article id="salida2"></article>
+            </section>
+
+            <section id="asi1">
+                <button id="btn11">Crear Asignatura</button>
+                <article id="opt11">
+                    <h2>Rellena los datos de la asignatura:</h2>
+                    <form action="#" method="get">
+                        <!-- Nombre de la asignatura -->
+                        <label for="nombre_asignatura">Nombre:</label>
+                        <input type="text" name="nombre_asignatura" id="nombre_asignatura" required>
+
+                        <!-- Botón de enviar -->
+                        <button type="submit" id="submit11">Enviar datos</button>
+                    </form>
+                </article>
+            </section>
+
+            <section id="asi2">
+                <button id="btn12">Eliminar Asignatura</button>
+                <article id="opt12">
+                    <h2>Introduce el nombre de la asignatura a eliminar</h2>
+                    <form action="#" method="get">
+                        <label for="nombre_asignatura2">Nombre:</label>
+                        <input type="text" name="nombre_asignatura2" id="nombre_eliminar_asignatura" required>
+                        <button type="submit" id="submit12">Eliminar asignatura</button>
+                    </form>
+                    <article id="salida12"></article>
+                </article>
             </section>
 
             <section id="est3">
@@ -72,12 +100,13 @@
                 <article id="opt3">
                     <h2>Introduce el nombre del estudiante a matricular y la asignatura</h2>
                     <form action="#" method="get">
-                        <label for="nombre3">Nombre:</label>
-                        <input type="text" name="nombre3" id="nombre_matricular" required>
-                        <label for="asignatura">Asignatura:</label>
-                        <input type="text" name="asignatura" id="asignatura" required>
+                        <label for="nombre_matricular">Nombre:</label>
+                        <input type="text" name="nombre_matricular" id="nombre_matricular" required>
+                        <label for="asignatura_matricular">Asignatura:</label>
+                        <input type="text" name="asignatura_matricular" id="asignatura_matricular" required>
                         <button type="submit" id="submit3">Matricular estudiante</button>
                     </form>
+                </article>
             </section>
 
             <section id="est4">
@@ -91,21 +120,8 @@
                         <input type="text" name="asignatura2" id="asignatura_desmatricular" required>
                         <button type="submit" id="submit4">Desmatricular estudiante</button>
                     </form>
+                    <article id="salida4"></article>
                 </article>
-                <article id="salida4"></article>
-            </section>
-
-            <section id="est5">
-                <button id="btn5">Historial Matriculación - Desmatriculación</button>
-                <article id="opt5">
-                    <h2>Introduce el nombre del estudiante</h2>
-                    <form action="#" method="get">
-                        <label for="nombre5">Nombre:</label>
-                        <input type="text" name="nombre5" id="nombre_historial" required>
-                        <button type="submit" id="submit5">Ver historial</button>
-                    </form>
-                </article>
-                <article id="salida5"></article>
             </section>
 
             <section id="est6">
@@ -118,11 +134,11 @@
                         <label for="asignatura3">Asignatura:</label>
                         <input type="text" name="asignatura3" id="asignatura_calificar" required>
                         <label for="calificacion">Calificación:</label>
-                        <input type="number" name="calificacion" id="calificacion" required>
+                        <input type="number" name="calificacion" id="calificacion" min="0" max="10" required>
                         <button type="submit" id="submit6">Calificar estudiante</button>
                     </form>
+                    <article id="salida6"></article>
                 </article>
-                <article id="salida6"></article>
             </section>
 
             <section id="est7">
@@ -134,106 +150,25 @@
                         <input type="text" name="nombre7" id="nombre_promedio" required>
                         <button type="submit" id="submit7">Ver promedio</button>
                     </form>
+                    <article id="salida7"></article>
                 </article>
-                <article id="salida7"></article>
             </section>
 
             <section id="est8">
                 <button id="btn8">Promedio de Todos los Estudiantes</button>
                 <article id="opt8">
                     <h2>Promedio de Todos los Estudiantes:</h2>
+                    <article id="salida8"></article>
                 </article>
-                <article id="salida8"></article>
-            </section>
-
-            <section id="est9">
-                <button id="btn9">Buscar un Estudiante</button>
-                <article id="opt9">
-                    <h2>Introduce el nombre del estudiante a buscar</h2>
-                    <form action="#" method="get">
-                        <label for="nombre9">Nombre:</label>
-                        <input type="text" name="nombre9" id="nombre_buscar" required>
-                        <button type="submit" id="submit9">Buscar estudiante</button>
-                    </form>
             </section>
 
             <section id="est10">
                 <button id="btn10">Reporte Completo</button>
                 <article id="opt10">
-                    <h2>Reporte Completo:</h2>
+                    <h2>Reporte de Todos los Estudiantes</h2>
+                    <article id="salida10"></article>
                 </article>
-                <article id="salida10"></article>
             </section>
         </section>
-
-
-        <section id="asignaturas_section">
-            <section id="asi1">
-                <button id="btn11">Crear Asignatura</button>
-                <article id="opt11">
-                    <h2>Rellena los datos de la asignatura:</h2>
-                    <form action="#" method="get">
-                        <!-- Nombre de la asignatura -->
-                        <label for="nombre_asignatura">Nombre:</label>
-                        <input type="text" name="nombre_asignatura" id="nombre_asignatura" required>
-
-                        <!-- Botón de enviar -->
-                        <button type="submit" id="submit11">Enviar datos</button>
-                </article>
-            </section>
-
-            <section id="asi2">
-                <button id="btn12">Eliminar Asignatura</button>
-                <article id="opt12">
-                    <h2>Introduce el nombre de la asignatura a eliminar</h2>
-                    <form action="#" method="get">
-                        <label for="nombre_asignatura2">Nombre:</label>
-                        <input type="text" name="nombre_asignatura2" id="nombre_eliminar_asignatura" required>
-                        <button type="submit" id="submit12">Eliminar asignatura</button>
-                    </form>
-                </article>
-                <article id="salida12"></article>
-            </section>
-
-            <section id="asi3">
-                <button id="btn13">Promedio de Asignatura</button>
-                <article id="opt13">
-                    <h2>Introduce el nombre de la asignatura</h2>
-                    <form action="#" method="get">
-                        <label for="nombre_asignatura3">Nombre:</label>
-                        <input type="text" name="nombre_asignatura3" id="nombre_promedio_asignatura" required>
-                        <button type="submit" id="submit13">Ver promedio</button>
-                    </form>
-                </article>
-                <article id="salida13"></article>
-            </section>
-
-            <section id="asi4">
-                <button id="btn14">Calificar Asignatura</button>
-                <article id="opt14">
-                    <h2>Introduce el nombre de la asignatura y la calificación:</h2>
-                    <form action="#" method="get">
-                        <label for="nombre_asignatura4">Nombre:</label>
-                        <input type="text" name="nombre_asignatura4" id="nombre_calificar_asignatura" required>
-                        <label for="calificacion_asignatura">Calificación:</label>
-                        <input type="number" name="calificacion_asignatura" id="calificacion_asignatura" required>
-                        <button type="submit" id="submit14">Calificar asignatura</button>
-                    </form>
-                </article>
-            </section>
-
-            <section id="asi5">
-                <button id="btn15">Buscar Asignatura</button>
-                <article id="opt15">
-                    <h2>Introduce el nombre de la asignatura a buscar</h2>
-                    <form action="#" method="get">
-                        <label for="nombre_asignatura5">Nombre:</label>
-                        <input type="text" name="nombre_asignatura5" id="nombre_buscar_asignatura" required>
-                        <button type="submit" id="submit15">Buscar asignatura</button>
-                    </form>
-            </section>
-        </section>
-    </section>
-    
 </body>
 </html>

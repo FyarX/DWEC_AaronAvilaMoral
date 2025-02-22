@@ -9,23 +9,33 @@ h1, h2, p, label{
     color: white;
 }
 
+h1{
+    text-align: center;
+    margin-bottom: 50px;
+}
 #main_section{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    gap: 40px;
     justify-content: center;
-    gap: 50px;
+    align-items: center;
 }
+
 
 button {
     background: linear-gradient(135deg, #ff7eb3, #ff758c);
     border: none;
     color: white;
     padding: 12px 24px;
-    font-size: 16px;
+    font-size: 24px;
     font-weight: bold;
     border-radius: 8px;
     cursor: pointer;
     transition: 0.3s ease-in-out;
+}
+
+#est10 {
+    margin-bottom: 100px;
 }
 
 .btn-gradient:hover {
@@ -40,5 +50,66 @@ form{
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 15px;
+}
 
+.hidden {
+    visibility: hidden;
+    height: 0;
+    overflow: hidden;
+}
+
+#submit1, 
+#submit2,
+#submit3, 
+#submit4, 
+#submit5, 
+#submit6, 
+#submit7,
+#submit8, 
+#submit9, 
+#submit10, 
+#submit11, 
+#submit12, 
+#submit13, 
+#submit14,
+#submit15{
+    background: #98FF98;
+    color: black;
+}
+
+#est1,
+#est2,
+#est3,
+#est4,
+#est5,
+#est6,
+#est7,
+#est8,
+#est9,
+#est10,
+#asi1,
+#asi2{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+
+#salida1,
+#salida2,
+#salida3,
+#salida4,
+#salida5,
+#salida6,
+#salida7,
+#salida8,
+#salida9,
+#salida10,
+#salida11,
+#salida12{
+    color: white;
+    font-size: 20px;
+    margin-top: 20px;
 }

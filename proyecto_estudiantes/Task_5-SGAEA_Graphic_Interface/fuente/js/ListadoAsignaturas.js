@@ -25,7 +25,16 @@ export class ListadoAsignaturas {
      * @param {Asignatura} asignatura - La asignatura a agregar.
      */
     agregaAsignatura(asignatura) {
-        this.#listaAsignaturas.push(asignatura);
+        try {
+            if (this.#listaAsignaturas.find(elemento => elemento.nombre.toLowerCase() === asignatura.nombre.toLowerCase())) {
+                throw new Error("Ya existe la asignatura");
+            }
+            this.#listaAsignaturas.push(asignatura);
+            return true;
+        } catch (error) {
+            console.log(`Error: ${error.message}`);
+            return false;
+        }
     }
 
     /**
@@ -33,16 +42,23 @@ export class ListadoAsignaturas {
      * @param {Asignatura} asignatura - La asignatura a eliminar.
      * @throws {Error} Si la asignatura no se encuentra en el listado.
      */
-    eliminaAsignatura(asignatura) {
+    eliminaAsignatura(nombreAsignatura) {
+        // Comprueba si el nombre de la asignatura es una cadena de texto
+        if (typeof nombreAsignatura !== "string") throw new Error("El nombre de la asignatura debe ser una cadena de texto");
+    
+        // Encuentra la asignatura que coincide exactamente con el nombre
+        const asignatura = this.#listaAsignaturas.find(asignatura => asignatura.nombre.toLowerCase() === nombreAsignatura.toLowerCase());
+    
         // Comprueba si la asignatura está en la lista
-        if (this.#listaAsignaturas.includes(asignatura)) {
-            // Filtra todas las asignaturas menos la que queremos eliminar
-            this.#listaAsignaturas.filter(a => a !== asignatura);
+        if (asignatura) {
+            const index = this.#listaAsignaturas.indexOf(asignatura);
+            this.#listaAsignaturas.splice(index, 1);
             console.log("Asignatura eliminada con éxito");
         } else {
             throw new Error("La asignatura no se encuentra en el listado");
         }
     }
+
 
     /**
      * Busca asignaturas que coincidan parcialmente con un patrón.
@@ -53,9 +69,8 @@ export class ListadoAsignaturas {
     busquedaAsignatura(patron) {
         // Comprueba si el patrón es una cadena de texto
         if (typeof patron !== "string") throw new Error("El patrón debe ser una cadena de texto");
-        let patronAsignatura = new RegExp(patron, "i");
-        // Filtra las asignaturas que cumplen el patrón
-        return this.#listaAsignaturas.filter(asignatura => patronAsignatura.test(asignatura.nombre));
+        // Encuentra la asignatura que coincide exactamente con el patrón
+        return this.#listaAsignaturas.find(asignatura => asignatura.nombre.toLowerCase() === patron.toLowerCase());
     }
 
     /**
