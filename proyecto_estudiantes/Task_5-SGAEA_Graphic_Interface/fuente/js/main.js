@@ -17,74 +17,8 @@ import { ListadoAsignaturas } from "./ListadoAsignaturas.js";
 let listaDeEstudiantes = new ListadoEstudiantes();
 let listaDeAsignaturas = new ListadoAsignaturas();
 
-// //! Carga de datos almacenados en el LocalStorage
-// function cargarLocalStorage() {
-//     //? Carga de datos de estudiantes
-//     const estudiantes = JSON.parse(localStorage.getItem("listaEstudiantes")) || [];
-//     if (estudiantes) {
 
-//         estudiantes.forEach(estudiante => {
-//             const direccion = new Direccion(
-//                 estudiante.direccion.calle,
-//                 estudiante.direccion.numero, 
-//                 estudiante.direccion.piso, 
-//                 estudiante.direccion.cp, 
-//                 estudiante.direccion.provincia, 
-//                 estudiante.direccion.localidad
-//             );
-
-//             const nuevoEstudiante = new Estudiante(estudiante.nombre, estudiante.edad, direccion);
-//             listaEstudiantes.agregaEstudiante(nuevoEstudiante);
-//         });
-//     }
-
-//     //? Carga de datos de asignaturas
-//     const asignaturas = JSON.parse(localStorage.getItem("listaAsignaturas")) || [];
-//     if (asignaturas) {
-//         asignaturas.forEach(asignatura => {
-//             const nuevaAsignatura = new Asignatura(asignatura.nombre);
-//             listaAsignaturas.agregaAsignatura(nuevaAsignatura);
-//         });
-//     }
-
-//     //? Carga de datos de matriculaciones
-//     const matriculaciones = JSON.parse(localStorage.getItem("matriculaciones")) || [];
-//     if (matriculaciones) {
-//         matriculaciones.forEach(matriculacion => {
-//             const estudiante = listaEstudiantes.busquedaEstudiante(matriculacion.estudiante);
-//             const asignatura = listaAsignaturas.busquedaAsignatura(matriculacion.asignatura);
-//             estudiante.matricularEstudiante(asignatura);
-//         });
-//     }
-
-//     //? Carga de datos de calificaciones
-//     const calificaciones = JSON.parse(localStorage.getItem("calificaciones")) || [];
-//     if (calificaciones) {
-//         calificaciones.forEach(calificacion => {
-//             const estudiante = listaEstudiantes.busquedaEstudiante(calificacion.estudiante);
-//             const asignatura = listaAsignaturas.busquedaAsignatura(calificacion.asignatura);
-//             estudiante.calificarEstudiante(asignatura, calificacion.nota);
-//         });
-//     }
-// }
-
-// // Se carga el LocalStorage al iniciar la aplicación
-// cargarLocalStorage();
-
-// //? Carga de registros en el LocalStorage (Va fuera de la función ya que se usará en varias funciones)
-// function cargarRegistrosLocalStorage(estudiante) {
-//     const registros = JSON.parse(localStorage.getItem("registros")) || [];
-//     let arrayRegistros = [];
-//     if(registros){
-//         for(let registro of registros){
-//             if(registro.nombre === estudiante.nombre){
-//                 arrayRegistros = registro.registros;
-//             }
-//         }
-//     }
-//     return arrayRegistros;
-// }
-
+//! Función para cargar los datos del LocalStorage
 function cargarDatosLocalStorage() {
     //? Carga de datos de estudiantes
     let estudiantesGuardados = localStorage.getItem("todosLosEstudiantes");
@@ -449,7 +383,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (estudiante && asignatura) {
             
-            estudiante.calificar(asignatura, nota)? alert("Estudiante calificado con éxito"): alert("El estudiante no está matriculado en esta asignatura");
+            estudiante.calificar(asignatura, nota)? alert("Estudiante calificado con éxito") : alert("ola :D");
 
             // Guardar en LocalStorage
             const calificaciones = JSON.parse(localStorage.getItem("calificaciones")) || [];

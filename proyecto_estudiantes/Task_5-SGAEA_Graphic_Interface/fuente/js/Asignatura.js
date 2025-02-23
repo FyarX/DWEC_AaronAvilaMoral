@@ -26,17 +26,12 @@ export class Asignatura {
      */
     calculaPromedio() {
         // Comprueba si hay calificaciones
-        let longArray = this.#calificaciones.length;
+        const longArray = this.#calificaciones.length;
         if (longArray > 0) {
-
-            let sumArray = 0;
-            for (let i = 0; i < longArray; i++) {
-                sumArray += this.#calificaciones[i];
-            }
-
+            // Calcula la suma de las calificaciones
+            const sumArray = this.#calificaciones.reduce((sum, calificacion) => sum + Number(calificacion), 0);
             // Devuelve la media de las calificaciones
-            return sumArray / longArray;
-
+            return (sumArray / longArray);
         } else {
             console.log("No existen calificaciones");
             return 0;
