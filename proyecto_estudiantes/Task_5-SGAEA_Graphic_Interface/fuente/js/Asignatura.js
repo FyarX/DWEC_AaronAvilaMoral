@@ -15,7 +15,11 @@ export class Asignatura {
      */
     constructor(nombre) {
         // Filtrado de nombres
-        this.#nombre = (nombre.match(/^[A-Za-zÁÉÍÓÚáéíóú ]+$/)) ? nombre : "Sin nombre"; // Solo acepta letras y espacios
+        if (!nombre.match(/^[A-Za-zÁÉÍÓÚáéíóú ]+$/)) {  
+            alert("El nombre solo puede contener letras y espacios");
+        } else {
+            this.#nombre = nombre;
+        }
 
         this.#calificaciones = [];
     }

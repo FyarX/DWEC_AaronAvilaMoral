@@ -213,6 +213,11 @@ document.addEventListener("DOMContentLoaded", () => {
     // Validación de formulario
     document.getElementById("opt11").querySelector("form").addEventListener("submit", function (e) {
 
+        if (!document.getElementById("nombre_asignatura").value.match(/^[A-Za-zÁÉÍÓÚáéíóú ]+$/)) {
+            alert("El nombre solo puede contener letras y espacios");
+            return;
+        }
+
         const nombreAsignatura = document.getElementById("nombre_asignatura").value;
         let nuevaAsignatura = new Asignatura(nombreAsignatura);
         const asignaturaAñadida = listaDeAsignaturas.agregaAsignatura(nuevaAsignatura);
@@ -466,7 +471,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     boton10.addEventListener("click", function () {
         contenidoReporte.classList.toggle("hidden");
-        localStorage.clear();
     });
 
     // Mostrar el reporte completo
