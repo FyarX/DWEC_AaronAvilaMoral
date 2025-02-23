@@ -81,6 +81,7 @@ function cargarDatosLocalStorage() {
             }
         }
     }
+
 }
 
 
@@ -104,7 +105,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Validación de formulario
     document.getElementById("opt1").querySelector("form").addEventListener("submit", function (e) {
-
+        if (!document.getElementById("nombre").value.match(/^[A-Za-zÁÉÍÓÚáéíóú ]+$/)) {
+            alert("El nombre solo puede contener letras y espacios");
+            return;
+        } 
         const nombreEstudiante = document.getElementById("nombre").value;
         const edadEstudiante = document.getElementById("edad").value;
         const calleEstudiante = document.getElementById("calle").value;
@@ -182,13 +186,15 @@ document.addEventListener("DOMContentLoaded", () => {
         localStorage.setItem("todosLosEstudiantes", JSON.stringify(estudiantesArray));
     });
 
-    // Obtener datos del LocalStorage
-    const datos = JSON.parse(localStorage.getItem("todosLosEstudiantes"));
-    // Mostrar las asignaturas en el HTML
-    salida2.innerHTML = "";
-    datos.forEach(estudiante => {
-        salida2.innerHTML += `<li style="color: white;">${estudiante.nombre}</li>`;
-    });
+    // Obtener datos del LocalStorage´
+    if(localStorage.getItem("todosLosEstudiantes") !== null) {
+        const datos = JSON.parse(localStorage.getItem("todosLosEstudiantes"));
+        // Mostrar las asignaturas en el HTML
+        salida2.innerHTML = "";
+        datos.forEach(estudiante => {
+            salida2.innerHTML += `<li style="color: white;">${estudiante.nombre}</li>`;
+        });
+    }
         
 });
 
@@ -259,13 +265,15 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // Obtener datos del LocalStorage
-    const datos = JSON.parse(localStorage.getItem("todasLasAsignaturas"));
+    if(localStorage.getItem("todasLasAsignaturas") !== null) {
+        const datos = JSON.parse(localStorage.getItem("todasLasAsignaturas"));
 
-    // Mostrar las asignaturas en el HTML
-    salida12.innerHTML = "";
-    datos.forEach(asignatura => {
-        salida12.innerHTML += `<li style="color: white;">${asignatura.nombre}</li>`;
-    });
+        // Mostrar las asignaturas en el HTML
+        salida12.innerHTML = "";
+        datos.forEach(asignatura => {
+            salida12.innerHTML += `<li style="color: white;">${asignatura.nombre}</li>`;
+        });
+    }
 });
 
 
@@ -458,6 +466,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     boton10.addEventListener("click", function () {
         contenidoReporte.classList.toggle("hidden");
+        localStorage.clear();
     });
 
     // Mostrar el reporte completo

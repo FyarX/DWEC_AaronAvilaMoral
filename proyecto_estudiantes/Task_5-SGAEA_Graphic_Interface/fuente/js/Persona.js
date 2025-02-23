@@ -16,8 +16,8 @@ export default class Persona {
      * @throws {Error} Si el nombre contiene caracteres no válidos.
      */
     constructor(nombre, edad, direccion) {
-        if (!nombre.match(/[A-Za-zÁÉÍÓÚáéíóú ]+/)) {
-            throw new Error("El nombre debe contener solo letras y espacios");
+        if (!nombre.match(/^[A-Za-zÁÉÍÓÚáéíóú ]+$/)) {  
+            alert("El nombre solo puede contener letras y espacios");
         } else {
             this.#nombre = nombre;
         }
