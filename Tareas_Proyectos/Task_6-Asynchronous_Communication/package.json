@@ -1,0 +1,17 @@
+{
+  "name": "task_6-asynchronous_communication",
+  "version": "1.0.0",
+  "description": "Tarea 6 de DWEC, JS y JQuery",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Aarón Ávila",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^10.4.20",
+    "jquery": "^3.7.1",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^4.0.9"
+  }
+}
