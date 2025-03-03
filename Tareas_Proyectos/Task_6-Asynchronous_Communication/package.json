@@ -2,11 +2,10 @@
   "name": "task_6-asynchronous_communication",
   "version": "1.0.0",
   "description": "Tarea 6 de DWEC, JS y JQuery",
-  "main": "index.js",
   "scripts": {
     "dev": "parcel src/index.html",
     "build": "rimraf dist && parcel build src/index.html",
-    "clean": "rimraf .parcel-cache dist"  
+    "clean": "rimraf .parcel-cache dist"
   },
   "author": "Aarón Ávila",
   "license": "ISC",
@@ -17,6 +16,7 @@
     "parcel": "^2.13.3",
     "postcss": "^8.5.3",
     "rimraf": "^6.0.1",
+    "svgo": "^3.3.2",
     "tailwindcss": "^4.0.9"
   }
 }

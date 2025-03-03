@@ -29,11 +29,11 @@ document.addEventListener("DOMContentLoaded", () => {
                           const card = document.createElement("article");
                           card.classList.add("pokemon-card");
                           card.innerHTML = `
-                              <article class="bg-white shadow-lg rounded-full p-4 m-4 w-56 h-56 flex flex-col items-center justify-center text-center border border-gray-200 transition-transform transform hover:bg-green-200">
-                                  <img src="${pokemonImage}" alt="${pokemonName}" class="w-24 h-24 rounded-full">
-                                  <h2 class="text-xl font-semibold text-gray-800 capitalize">${pokemonName}</h2>
-                                  <p class="text-gray-600 mt-1">Types: <span class="font-medium">${pokemonTypes}</span></p>
-                              </article>
+                            <article class="bg-white shadow-lg rounded-full p-4 m-4 w-56 h-56 flex flex-col items-center justify-center text-center border border-gray-200 transition-transform transform hover:bg-green-200">
+                                <img src="${pokemonImage}" alt="${pokemonName}" class="w-24 h-24 rounded-full">
+                                <h2 class="text-xl font-semibold text-gray-800 capitalize">${pokemonName}</h2>
+                                <p class="text-gray-600 mt-1">Types: <span class="font-medium">${pokemonTypes}</span></p>
+                            </article>
                           `;
 
                           container.appendChild(card);
