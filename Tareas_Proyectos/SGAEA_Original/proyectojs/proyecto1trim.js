@@ -446,8 +446,6 @@ class ListadoAsignaturas{
 
 // ************* CONJUNTO DE PRUEBAS DE CORRECTO FUNCIONAMIENTO ******************
 
-function prueba(){
-
     console.log("-------------Pruebas de interacción con estudiantes y asignaturas-----------------");
 
     //? Creación de listas de estudiantes y de asignaturas
@@ -470,12 +468,24 @@ function prueba(){
     
     console.log("Estudiantes y asignaturas creados con éxito");
 
-    // Eliminación de estudiantes/asignaturas
+    //? Adición de estudiantes y asignaturas a sus respectivas listas con las funciones agregaEstudiante y agregaAsignatura
 
-    ListadoEstudiantes.eliminaEstudiante(estudiante4);
-    ListadoAsignaturas.eliminaAsignatura(ingComputadores);
-
-    console.log("Estudiantes y asignaturas eliminados con éxito");
+    try{
+        listaEstudiantes.agregaEstudiante(estudiante1);
+        listaEstudiantes.agregaEstudiante(estudiante2);
+        listaEstudiantes.agregaEstudiante(estudiante3);
+        listaEstudiantes.agregaEstudiante(estudiante4);
+    
+        listaAsignaturas.agregaAsignatura(logica);
+        listaAsignaturas.agregaAsignatura(sistemasDigitales);
+        listaAsignaturas.agregaAsignatura(matematicaDiscreta);
+        listaAsignaturas.agregaAsignatura(ingComputadores);
+        } catch (error){
+            console.log("Ha habido un error al agregar al estudiante/asignatura a la lista");
+            console.log(error);
+        }
+    
+        console.log("Estudiantes y asignaturas agregados con éxito");
 
     //? Matriculación y desmatriculación de estudiantes en asignaturas con las funciones matricularEstudiante y desmatricularEstudiante
 
@@ -497,40 +507,14 @@ function prueba(){
 
     console.log("Estudiantes desmatriculados con éxito");
 
-    //? Adición de estudiantes y asignaturas a sus respectivas listas con las funciones agregaEstudiante y agregaAsignatura
 
-    try{
-    listaEstudiantes.agregaEstudiante(estudiante1);
-    listaEstudiantes.agregaEstudiante(estudiante2);
-    listaEstudiantes.agregaEstudiante(estudiante3);
+    //? Eliminación de estudiantes/asignaturas
 
-    listaAsignaturas.agregaAsignatura(logica);
-    listaAsignaturas.agregaAsignatura(sistemasDigitales);
-    listaAsignaturas.agregaAsignatura(matematicaDiscreta);
-    listaAsignaturas.agregaAsignatura(ingComputadores);
-    } catch (error){
-        console.log("Ha habido un error al agregar al estudiante/asignatura a la lista");
-        console.log(error);
-    }
-
-    console.log("Estudiantes y asignaturas agregados con éxito");
-
-    //? Calificación de estudiantes en asignaturas con la función calificarEstudiante
-
-    try{
-    console.log("CALIFICACIÓN DE ESTUDIANTES");
-    estudiante1.calificarEstudiante(sistemasDigitales, 9);
-    estudiante1.calificarEstudiante(sistemasDigitales, 7);
-    estudiante1.calificarEstudiante(ingComputadores, 9);
-    estudiante2.calificarEstudiante(matematicaDiscreta, 5);
-    console.log("\n\n");
-    } catch (error){
-        console.log("Ha habido un error al calificar al estudiante");
-        console.log(error);
-    }
-
-    console.log("Estudiantes calificados con éxito");    
-}
+    listaEstudiantes.eliminaEstudiante(estudiante4);
+    listaAsignaturas.eliminaAsignatura(ingComputadores);
+    
+    console.log("Estudiantes y asignaturas eliminados con éxito");
+     
 
 // ****************** Programa principal *****************************
 function mostrarMenu(){
@@ -943,10 +927,6 @@ function mostrarMenu(){
             mostrarMenu();
     }
     }
-    
-    // Llamada al metodo de prueba de inicialización de datos
-    prueba();
-
 
     // Llamada al método principal
     mostrarMenu();
